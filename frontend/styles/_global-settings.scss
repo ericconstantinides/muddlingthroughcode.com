@@ -1,0 +1,16 @@
+//---------------------------------------------------------
+// Global Settings
+//---------------------------------------------------------
+html {
+  background: $site-bg-color;
+  font-size: $default-em-size; // this is the base font of the site (and only place px should be used for fonts).
+}
+hr {
+  border: none;
+  height: 1px;
+  margin: 0;
+  background-color: $site-hr-color;
+}
+.article {
+  display: block;
+}

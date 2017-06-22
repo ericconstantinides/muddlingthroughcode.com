@@ -1,0 +1,48 @@
+//------------------------------------------------------------------------------
+// Typography
+//------------------------------------------------------------------------------
+@mixin title-font {
+  font-family: $title-font-family;
+}
+@mixin body-font {
+  font-family: $body-font-family;
+  font-weight: $body-font-weight;
+  color: $body-font-color;
+  line-height: $body-line-height;
+}
+
+
+body,p,ul,ol,li {
+  @include body-font;
+}
+p,ul,ol,li {
+  line-height: $body-line-height;
+}
+h1,h2,h3,h4,h5,h6 {
+  @include title-font;
+  font-weight: normal;
+}
+h1,h2,h3,h4,h5,h6,p,ul,ol {
+  margin: 0 0 1em;
+  padding: 0;
+}
+// Reset fonts for relevant elements
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+a {
+  color: $body-link-color;
+  transition: $transition-speed;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); // no gray overlay on ios click:
+  &:hover {
+    color: $body-link-hover-color;
+
+  }
+}

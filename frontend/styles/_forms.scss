@@ -1,0 +1,170 @@
+//------------------------------------------------------------------------------
+// FORMS - GLOBAL
+//------------------------------------------------------------------------------
+input[type='number'] {
+	border: 1px dotted black;
+}
+input {
+	&[type=email],
+	&[type=text],
+	&[type=password],
+	&[type=number],
+	&[type=search] {
+		border-radius: 2px;
+		padding: 0 0.6em;
+	}
+}
+input[type=email],
+input[type=text],
+input[type=search],
+input[type=password],
+textarea {
+	// @include sans-serif;
+	display: block;
+	background: white;
+	padding: 0.4em 0.4em;
+	font-size: 1.3em;
+	color: #333333;
+	border: 1px solid #e9e9e9;
+	background-size: cover;
+	transition: background 0.15s;
+	border-radius: 4px;
+	&:focus {
+		// background: white;
+		outline: none;
+		box-shadow: 0px 0 4px rgba(black, 0.5);
+	}
+	transition: background 0.15s;
+}
+textarea {
+	// width: 75% !important;
+}
+input[size="4"] {
+	// width: 52px !important;
+}
+select {
+	// @include sans-serif;
+	font-size: 1em;
+	border: 1px solid #cccccc;
+	color: #333333;
+	&:focus {
+		background: white;
+		outline: none;
+	}
+}
+input[type=email],
+input[type=text],
+input[type=search],
+input[type=password],
+input[type=number],
+textarea,
+select {
+	max-width: 100%;
+	// margin-bottom: 0.5em;
+	&.filled {
+		// background: #f3f9f3 !important;
+	}
+	@media only screen and (max-width: $bp-medium) {
+		width: 100%;
+	}
+}
+
+.form-item {
+	position: relative;
+	margin-bottom: 1em;
+	input.error,
+	textarea.error,
+	select.error {
+		border: 1px solid #d5423f;
+	}
+	&.confirm-parent {
+		margin-bottom: 0;
+	}
+	&.confirm-parent > div.password-confirm {
+		display: none;
+	}
+}
+input.password-confirm,
+input.password-field {
+	width: 100%;
+	margin-bottom: 0;
+}
+// body.front {
+// 	input[type=text],
+// 	input[type=password],
+// 	textarea {
+// 		width: 100%;
+// 	}
+// }
+.login-forgot,
+.description,
+label {
+	display: block;
+	color: #333333;
+	margin: 0 0 1px 2px;
+	font-size: 0.825em;
+	text-align: left;
+	em {
+		font-style: normal;
+	}
+}
+.lead-form input.short-field {
+	width: 30px;
+}
+//---------------------------------------------------------
+// Buttons
+//---------------------------------------------------------
+.submit,
+input[type=submit] {
+	appearance: none;
+	// @include serif;
+	font-size: 0.8em;
+
+	cursor: pointer;
+	margin-top: 1em;
+
+	transition: background 0.15s;
+
+	background-color: #1b1b1b;
+	color: white;
+	border: none;
+	padding: 0.6em 1.1em;
+	border-radius: 2px;
+
+	&:focus,
+	&:active,
+	&:hover {
+		outline: none;
+		background-color: lighten(#1b1b1b,15%);
+	}
+	+ input[type=submit] {
+		margin-left: 0.6em;
+	}
+}
+
+textarea {
+	width: 100%;
+	resize: vertical;
+	height: 5em;
+}
+
+//------------------------------------------------------------------------------
+// PLACEHOLDER TEXT
+//------------------------------------------------------------------------------
+// ::-webkit-input-placeholder { text-transform: uppercase; font-size: 80% }  // WebKit browsers
+// :-moz-placeholder { text-transform: uppercase; font-size: 80% }  // Mozilla Firefox 4 to 18
+// ::-moz-placeholder { text-transform: uppercase; font-size: 80% }  // Mozilla Firefox 19+
+// :-ms-input-placeholder { text-transform: uppercase; font-size: 80% }  // Internet Explorer 10+
+
+//------------------------------------------------------------------------------
+// FORMS - SPECIFIC
+//------------------------------------------------------------------------------
+.search-container {
+	input[type=text] {
+		width: auto;
+	}
+}
+.form-item-quantity input {
+	border: 1px dotted black;
+	background: none;
+}

@@ -1,0 +1,48 @@
+//---------------------------------------------------------
+// Variables
+//---------------------------------------------------------
+$default-em-size: 16px !default;    // the only place to use font pixels
+$default-base-width: 1000px !default; // used with responsive mixin
+
+//---------------------------------------------------------
+// Breakpoints
+//---------------------------------------------------------
+$bp-xl: 1100px !default;
+$bp-large: 1024px !default;        // ~ tablet
+$bp-medium-large: 900px !default;  // ~ in-between tablet and full-tablet
+$bp-medium: 767px !default;        // ~ highest possible phone
+$bp-medium-small: 620px !default;  // ~ in-between phone and tablet
+$bp-small: 480px !default;         // ~ phone
+
+$breakpoints: 1100px, 1024px, 900px, 767px, 620px, 480px !default;
+
+//---------------------------------------------------------
+// Layout
+//---------------------------------------------------------
+$site-width: 1150px !default;
+$site-width-max: 1500px !default;
+
+$site-padding: 1.5% !default;
+$span-padding: 2.5% !default;
+
+$body-width: 700px !default;
+$body-padding: 2em !default;
+
+//---------------------------------------------------------
+// Header
+//---------------------------------------------------------
+$header-height: 168px !default;
+
+$site-bg-color: white !default;
+$site-hr-color: #cccccc !default;
+
+$body-font-family: sans-serif !default;
+$body-font-weight: 300 !default;
+$body-font-color: #333333 !default;
+$body-line-height: 1.2 !default;
+$title-font-family: serif !default;
+
+$body-link-color: #00125a;
+$body-link-hover-color: #000415;
+
+$transition-speed: 0.15s;

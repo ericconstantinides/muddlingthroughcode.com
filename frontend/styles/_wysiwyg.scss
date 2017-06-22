@@ -1,0 +1,53 @@
+//—————————————————————————————————————————————————————————————————————
+// WYSIWYG / CKEDITOR
+//—————————————————————————————————————————————————————————————————————
+.form-textarea-wrapper textarea.cke_source {
+  padding: 8px;
+}
+body.cke_editable {
+  margin: 8px;
+  color: #333;
+}
+iframe.cke_wysiwyg_frame {
+  min-height: 350px;
+}
+select.cke_dialog_ui_input_select:hover {
+  background: none;
+}
+.cke_dialog table tr:hover {
+  outline: none;
+}
+.sortableList {
+  box-sizing: content-box;
+}
+body.page-admin-config-content-ckeditor {
+  .form-type-radio {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+//—————————————————————————————————————————————————————————————————————
+// CKEditor image2 copy after disabling "ckeditor_image2/ckeditor_image2.responsive.css"
+//—————————————————————————————————————————————————————————————————————
+@media (max-width: 480px) {
+  .align-right,
+  .align-left {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (min-width: 481px) {
+  .align-left {
+    float: left;
+    margin-right: 1em;
+    // width: auto;
+    // max-width: 46%;
+  }
+  .align-right {
+    float: right;
+    margin-left: 1em;
+    // width: auto;
+    // max-width: 46%;
+  }
+}

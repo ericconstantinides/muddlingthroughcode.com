@@ -1,0 +1,178 @@
+//---------------------------------------------------------
+// Mixins & Functions
+//---------------------------------------------------------
+
+//---------------------------------------------------------
+// Parse Num: removes any units from the variable
+//---------------------------------------------------------
+@function parse-num($value) {
+	@return $value / ($value * 0 + 1);
+}
+//---------------------------------------------------------
+// Parse Unit: Returns unit from the variable (just a copy of the "unit()" SASS fucntion)
+//---------------------------------------------------------
+@function parse-unit($value) {
+	@return unit($value);
+}
+
+//---------------------------------------------------------
+// Responsive
+//
+// Responsive takes a base value in rems(default) or px.
+// When the value can be fluid, it is stated in vw units.
+// When the viewport is larger than the default-base-width, the property is the base.
+// When the responsive value equals the $min value, the $min value is used at a calculated breakpoint.
+//---------------------------------------------------------
+@mixin responsive($property, $base, $min:0, $default-base-width: 1000px, $important: no) {
+	$default-em-size: 16px !default;
+
+	// strip the units out
+	$default-em-size: parse-num($default-em-size);
+	$default-base-width: parse-num($default-base-width);
+
+	// strip the min because its unit is meaningless compared to the $base:
+	$min: parse-num($min);
+
+	// make sure the given values are only px or ems or rems:
+	@if (unitless($base)) {
+		// all is good
+	} @else if unit($base) == "rem" {
+		// just strip the rem out of there as well
+		$base: parse-num($base);
+	} @else if unit($base) == "px" {
+		// switch the values to ems:
+		$base: parse-num($base);
+		$base: $base / $default-em-size;
+		$min: $min / $default-em-size;
+	} @else {
+		 @error "$base value unit must be either NULL, rem, or px";
+	}
+
+
+	// first figure out if there is a min value. If not, make it half the base, but at least 1em
+	@if $min == 0 {
+		$min: $base / 2;
+		@if ($property == font-size) {
+			@if $min < 1 {
+				$min: 1;
+			}
+		}
+	}
+	// convert the base to vw:
+	$base--vw: ( ( $base * $default-em-size ) / $default-base-width ) * 100;
+
+	// from the base--vw, we can figure out where the min breakpoint will occur:
+	$min-breakpoint: ( $min * $default-em-size ) / ($base--vw / 100 );
+
+	@if $important == no {
+		// now we set the responsive value:
+		#{$property}: $base * 1em; // default if < IE9
+		#{$property}: $base--vw * 1vw;
+
+		// on viewports *above* the default-base-width, we "hardcode" the original em value:
+		@media only screen and (min-width: (($default-base-width + 1) * 1px) ) {
+			#{$property}: $base * 1rem;
+		}
+
+		// at the calculated min-breakpoint, we use the min em value:
+		@media only screen and (max-width: ($min-breakpoint * 1px) ) {
+			#{$property}: $min * 1rem;
+		}
+	} @else {
+		// now we set the responsive value:
+		#{$property}: $base * 1em !important; // default if < IE9
+		#{$property}: $base--vw * 1vw !important;
+
+		// on viewports *above* the default-base-width, we "hardcode" the original em value:
+		@media only screen and (min-width: (($default-base-width + 1) * 1px) ) {
+			#{$property}: $base * 1rem !important;
+		}
+
+		// at the calculated min-breakpoint, we use the min em value:
+		@media only screen and (max-width: ($min-breakpoint * 1px) ) {
+			#{$property}: $min * 1rem !important;
+		}
+	}
+}
+
+//---------------------------------------------------------
+// Responsive OLD
+//---------------------------------------------------------
+@mixin responsive-old($property, $start, $finish, $unit:em) {
+	#{$property}: #{$start}#{$unit};
+	$breaks: length($breakpoints);
+	$diff: $start - $finish;
+	$eachdiff: $diff / $breaks;
+	@each $breakpoint in $breakpoints {
+		@media only screen and (max-width: #{$breakpoint}) {
+			$start: $start - $eachdiff;
+			#{$property}: #{$start}#{$unit};
+		}
+	}
+}
+//---------------------------------------------------------
+// Triangle
+//---------------------------------------------------------
+@mixin triangle ($color,$pointing,$side1,$side2,$side3) {
+	width: 0;
+	height: 0;
+	@if $pointing == up {
+		border-top: none;
+		border-right: $side1 solid transparent;
+		border-bottom: $side2 solid $color;
+		border-left: $side3 solid transparent;
+	}
+	@if $pointing == right {
+
+		border-top: $side1 solid transparent;
+		border-right: none;
+		border-left: $side2 solid $color;
+		border-bottom: $side3 solid transparent;
+	}
+	@if $pointing == left {
+		border-top: $side1 solid transparent;
+		border-right: $side2 solid $color;
+		border-left: none;
+		border-bottom: $side3 solid transparent;
+	}
+	@if $pointing == down {
+		border-top: $side1 solid $color;
+		border-right: $side2 solid transparent;
+		border-left: $side3 solid transparent;
+		border-bottom: none;
+	}
+}
+
+//---------------------------------------------------------
+// Create Percentage Point
+//---------------------------------------------------------
+@mixin create-percentage-point ($x, $y, $total-width, $total-height, $direction-x: left, $direction-y: top) {
+	@if $direction-y == top {
+		top: ( $y / $total-height ) * 100%;
+	} @else {
+		bottom: ( ( $total-height - $y ) / $total-height ) * 100%;
+	}
+	@if $direction-x == left {
+		left: ( $x / $total-width ) * 100%;
+	} @else {
+		right: ( ( $total-width - $x ) / $total-width ) * 100%;
+	}
+}
+
+//---------------------------------------------------------
+// Create Percentage Size
+//---------------------------------------------------------
+@mixin create-percentage-size($length, $total-width, $total-height, $type:vertical, $stroke:0 ) {
+	@if $type == vertical {
+		@if $stroke > 0 {
+			width: $stroke * 1px;
+		}
+		height: $length / $total-height * 100%;
+	} @else {
+		width: $length / $total-width * 100%;
+		@if $stroke > 0 {
+			height: $stroke * 1px;
+		}
+	}
+}
+

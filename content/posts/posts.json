@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Why I'm leaving the LAMP stack and embracing the MERN stack",
+    "date": "2017-06-19",
+    "dateDisplay": "Monday, June 19 2017",
+    "file": "muddling-01.md",
+    "active": true
+  },
+  {
+    "title": "CSS Overflow",
+    "date": "2017-06-26",
+    "dateDisplay": "Monday, June 26 2017",
+    "file": "muddling-02.md",
+    "active": false
+  }
+]
