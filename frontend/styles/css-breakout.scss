@@ -1,19 +1,26 @@
 $root-pixels: 18px;
 
-$site-width: 900px;
+$site-width: 980px;
 $site-padding: 0.5em;
 
 $body-width: 700px;
 $body-padding: 2em;
 
-//—————————————————————————————————————————————————————————————————————
-// Full Browser Width
-// Site Container Width
-// Inner Body Width
-//—————————————————————————————————————————————————————————————————————
-// full-width makes something full width, regardless of it's container or site-padding
+.site-container {
+  width: calc(100% - ( #{$site-padding} * 2) );
+  max-width: $site-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+.body-container {
+  width: calc(100% - ( #{$body-padding} * 2) );
+  max-width: $body-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Full Browser Width
+// css-breakout--max
 // This always extends to the outer edge of the viewport,
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 .css-breakout--max {
@@ -21,16 +28,22 @@ $body-padding: 2em;
   max-width: none;
   // convert the em padding to pixels (should be done smarter to test if it's ems)
   $px-padding: ((($body-padding * 2) / 1em) * $root-pixels);
+
+  // narrower than the body width
   @media only screen and (max-width: $body-width + $px-padding ) {
+    // break out of the body-container at the same rate as the padding
     margin-left: $body-padding * -1;
   }
+  // wider than the body width
   @media only screen and (min-width: $body-width + $px-padding + 1px ) {
-    margin-left: calc((50vw - (#{$body-width} / 2)) * -1);
+    // We start with "pulling left" exactly half the viewport.
+    // From there we "add back on" half the width of the body, which puts us directly in the center
+    margin-left: calc(-50vw + (#{$body-width} / 2));
   }
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Site Container Width
+// css-breakout--outer-container
 // This always extends to the contained width of the site
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 .css-breakout--outer-container {
@@ -39,10 +52,8 @@ $body-padding: 2em;
   $px-body-padding: ((($body-padding * 2) / 1em) * $root-pixels);
   @media only screen and (max-width: $site-width) {
     // this is the site-container and in
-    $half-body-width: $body-width / 2;
-    $this-margin: $half-body-width + ($px-site-padding / 2);
     width: 100vw;
-    margin-left: calc((50vw - #{$half-body-width}) * -1);
+    margin-left: calc(-50vw + (#{$body-width} / 2));
   }
   @media only screen and (max-width: $body-width + $px-body-padding ) {
     // this is the body container and in
@@ -57,7 +68,7 @@ $body-padding: 2em;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Inner Body Width
+// css-breakout--inner-container
 // This always extends to the contained width of the body
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 .css-breakout--inner-container {
@@ -70,9 +81,8 @@ $body-padding: 2em;
   }
   // this is the tweener period between the full width and the site padding:
   @media only screen and (min-width: $body-width + 1px ) and (max-width: $body-width + $px-padding + 1px ) {
-    $this-margin: ($body-width / 2) + ($px-padding / 2);
     width: $body-width;
     max-width: none;
-    margin-left: calc((50vw - #{$this-margin}));
+    margin-left: calc(50vw - (#{$body-width} / 2 + #{$px-padding} / 2));
   }
 }

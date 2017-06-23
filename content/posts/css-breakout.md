@@ -2,30 +2,33 @@
 
 What CSS Breakout does appears very simple. It "breaks" out of a normal container to either the inner, outer, or the maximum browser boundaries. Extremely little HTML work is required.
 
-## Working Demo
+<img src="/images/css-breakout.gif">
+
+## Live Demo
 
 Move your browser in and out and see how it works.
+
 <div class="dash-overlay">
-  <div class="css-breakout--inner-container u-p-r">
-    <img style="width:100%" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  </div>
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--inner-container"</code></span></span>
+  <img class="css-breakout--inner-container" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--inner-container</code></span></span>
   <p class="">Stays within the body-container. Only "touches" the sides in mobile</p>
-  <div class="css-breakout--outer-container u-p-r">
-    <img style="width:100%" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  </div>
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--outer-container"</code></span></span>
+  <img class="css-breakout--outer-container" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--outer-container</code></span></span>
   <p class="">Will always "touch" the site-width.</p>
-  <div class="css-breakout--max u-p-r">
-    <img style="width:100%" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  </div>
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--max"</code></span></span>
+  <img class="css-breakout--max" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--max</code></span></span>
   <p class="">Will always "touch" the edge of the browser</p>
+  <div class="css-breakout--outer-container">
+    <div style="background:whitesmoke; padding:0.25em 0.5em">
+      <h4>Works with Text just as well!</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est.</p>
+    </div>
+  </div>
 </div>
 
-## Why would you want to do this?
+## Why do I need to do this?
 
-Say you're in a WYSWYG and you'd like to push your content to the outer edges of the screen. Using CSS Breakout, you can. This solution relies on only CSS so it's fast and extremely portable.
+Say you're in a WYSIWYG and you'd like to push your content to the outer edges of the screen. Using CSS Breakout, you can. This solution relies on only CSS so it's fast and extremely portable.
 
 ## The Structure
 
@@ -63,3 +66,12 @@ Sometimes I wonder how I did this. It's a little confusing. But here goes: CSS B
 * `media-queries`
 
 I have 2 `container` widths that I use. The first one is a `site-container` which is the outer limits to my content. The other one I use I call a `body-container`. I use `body container` for blogs content because it's easier to read skinnier pages.
+
+Putting it all together took a lot of figuring things out and a lot of trial and error.
+
+There are 2 parts to getting this to work: The first part is to push the left margin into the center of the page. The second part is to pull it back.
+
+
+
+* viewport
+*
