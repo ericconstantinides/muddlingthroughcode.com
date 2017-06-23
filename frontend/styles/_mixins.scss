@@ -24,10 +24,10 @@
 // When the responsive value equals the $min value, the $min value is used at a calculated breakpoint.
 //---------------------------------------------------------
 @mixin responsive($property, $base, $min:0, $default-base-width: 1000px, $important: no) {
-	$default-em-size: 16px !default;
+	$root-pixels: 16px !default;
 
 	// strip the units out
-	$default-em-size: parse-num($default-em-size);
+	$root-pixels: parse-num($root-pixels);
 	$default-base-width: parse-num($default-base-width);
 
 	// strip the min because its unit is meaningless compared to the $base:
@@ -42,8 +42,8 @@
 	} @else if unit($base) == "px" {
 		// switch the values to ems:
 		$base: parse-num($base);
-		$base: $base / $default-em-size;
-		$min: $min / $default-em-size;
+		$base: $base / $root-pixels;
+		$min: $min / $root-pixels;
 	} @else {
 		 @error "$base value unit must be either NULL, rem, or px";
 	}
@@ -59,10 +59,10 @@
 		}
 	}
 	// convert the base to vw:
-	$base--vw: ( ( $base * $default-em-size ) / $default-base-width ) * 100;
+	$base--vw: ( ( $base * $root-pixels ) / $default-base-width ) * 100;
 
 	// from the base--vw, we can figure out where the min breakpoint will occur:
-	$min-breakpoint: ( $min * $default-em-size ) / ($base--vw / 100 );
+	$min-breakpoint: ( $min * $root-pixels ) / ($base--vw / 100 );
 
 	@if $important == no {
 		// now we set the responsive value:

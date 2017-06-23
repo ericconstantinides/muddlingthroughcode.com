@@ -1,16 +1,27 @@
 [
   {
     "title": "Why I'm leaving the LAMP stack and embracing the MERN stack",
+    "filetype": "markdown",
     "date": "2017-06-19",
     "dateDisplay": "Monday, June 19 2017",
     "file": "muddling-01.md",
     "active": true
   },
   {
-    "title": "CSS Overflow",
+    "title": "CSS Breakout",
+    "filetype": "markdown",
     "date": "2017-06-26",
     "dateDisplay": "Monday, June 26 2017",
-    "file": "muddling-02.md",
-    "active": false
+    "file": "css-breakout.md",
+    "css": ["css-breakout.css", "css-breakout--helper.css"],
+    "active": true
+  },
+  {
+    "title": "Express / Node.js Cheatsheet",
+    "filetype": "markdown",
+    "date": "2017-06-22",
+    "dateDisplay": "Thursday, June 22 2017",
+    "file": "express-nodejs-cheatsheet.md",
+    "active": true
   }
 ]

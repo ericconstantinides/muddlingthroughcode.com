@@ -1,0 +1,31 @@
+.dash-overlay {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 1px dashed #ccc;
+  }
+}
+
+.class-overlay__outer {
+  display: block;
+  height: 0;
+  position: relative;
+  z-index: 1;
+}
+.class-overlay__inner {
+  transform: translateY(calc(-100% + 1px));
+  display: block;
+}
+@media only screen and (max-width: 500px) {
+  .class-overlay__outer {
+    height: auto;
+  }
+  .class-overlay__inner {
+    transform: none;
+  }
+}

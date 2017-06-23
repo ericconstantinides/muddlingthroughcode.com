@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/styles.css' />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="site-container site-header__inner">
-        <a class="site-logo__link" href="/"><img class="site-logo" src="/images/logo--muddling-through-code.png" alt="Muddling Through Code logo"></a>
-      </div>
-    </header>
-    <div class="body-container">
-      <% posts.forEach(post => { if (post.active) { %>
-        <article class="blog-post u-mb-4">
-          <header class="post__header">
-            <h3 class="post__date"><%- post.dateDisplay %></h3>
-            <h2 class="post__title"><%- post.title %></h2>
-          </header>
-          <%- post.content %>
-        </article>
-      <% }}) %>
-    </div>
-    <footer class="site-footer">
-      <div class="body-container site-footer__inner">
-        <h2 class="post__title">What is this?</h2>
-        <div class="about__content"><%- about %></div>
-      </div>
-    </footer>
-  </body>
-</html>
+<% include partials/head %>
+<% include partials/site-header %>
+<div class="body-container">
+  <% posts.forEach(post => { if (post.active) { %>
+    <article class="post u-mb-4">
+      <% if (typeof post.css !== 'undefined') { %>
+        <% post.css.forEach(cssfile => { %>
+          <link rel="stylesheet" href="/css/<%- cssfile %>">
+        <% }); %>
+      <% } %>
+      <header class="post__header">
+        <h3 class="post__date"><%= post.dateDisplay %></h3>
+        <h1 class="post__title"><a href="/posts/<%= post.slug %>"><%= post.title %></a></h1>
+      </header>
+      <%- post.content %>
+    </article>
+  <% }}) %>
+</div>
+<% include partials/footer %>

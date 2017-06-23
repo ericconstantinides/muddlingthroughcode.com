@@ -3,7 +3,7 @@
 //---------------------------------------------------------
 html {
   background: $site-bg-color;
-  font-size: $default-em-size; // this is the base font of the site (and only place px should be used for fonts).
+  font-size: $root-pixels; // this is the base font of the site (and only place px should be used for fonts).
 }
 hr {
   border: none;

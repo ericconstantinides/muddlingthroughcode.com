@@ -1,0 +1,17 @@
+<% include partials/head %>
+<% include partials/site-header %>
+<div class="body-container">
+  <article class="post u-mb-4">
+    <% if (typeof post.css !== 'undefined') { %>
+      <% post.css.forEach(cssfile => { %>
+        <link rel="stylesheet" href="/css/<%- cssfile %>">
+      <% }); %>
+    <% } %>
+    <header class="post__header">
+      <h3 class="post__date"><%- post.dateDisplay %></h3>
+      <h1 class="post__title"><%- post.title %></h1>
+    </header>
+    <%- post.content %>
+  </article>
+</div>
+<% include partials/footer %>
