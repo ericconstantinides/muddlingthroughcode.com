@@ -1,6 +1,6 @@
 $root-pixels: 18px;
 $site-width: 980px;
-$site-padding: 0.5em;
+$site-padding: 1em;
 $skinny-width: 700px;
 $skinny-padding: 2em;
 
@@ -98,7 +98,25 @@ $skinny-padding-2x: $skinny-padding * 2;
     margin-left: 0;
   }
 }
-.site-container .css-breakout--to-skinny,
+
+// This could be done by forcing a block and margin-left: auto and margin-right: auto, but I don't want to force a block
+.site-container .css-breakout--to-skinny {
+  // Skinny and up to the skinny-container
+  @media only screen and (max-width: $px-skinny-width) {
+    margin-left: $neg-site-padding;
+  }
+  // tweener period between where the body container loses all of its padding
+  @media only screen and (min-width: $px-skinny-width + 1px ) and (max-width: $px-site-width-with-padding) {
+    width: $px-skinny-width;
+    $temp: $px-skinny-width + $px-site-padding;
+    margin-left: calc(50vw - #{$temp} / 2);
+  }
+  // from the skinny-container-with-padding and larger
+  @media only screen and (min-width: $px-site-width-with-padding + 1px) {
+    width: $px-skinny-width;
+    margin-left: ($px-site-width - $px-skinny-width) / 2;
+  }
+}
 .site-container .css-breakout--to-site,
 .site-container .css-breakout--auto {
   // Skinny and up to the site-container

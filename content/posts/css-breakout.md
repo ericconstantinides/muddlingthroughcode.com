@@ -6,10 +6,9 @@
 
 ## Summary
 
-What CSS Breakout does appears very simple. It "breaks" out of a normal container to either the inner, outer, or the maximum browser boundaries. No closing and then reopening divs is necessary. Absolutely no special HTML structure is required. And it's all done in pure CSS - no javascript needed.
+What CSS Breakout does appears very simple. It "breaks" out of a normal container to either the inner, outer, or the maximum browser boundaries. No closing and then reopening divs is necessary. Absolutely no special HTML structure is required. And it's all done in pure CSS - no javascript is used whatsoever.
 
 <img src="/images/css-breakout.gif" class="css-breakout--auto">
-
 
 ## Live Demo
 
@@ -18,13 +17,13 @@ Move your browser in and out and see how it works.
 <div class="dash-overlay">
   <img class="css-breakout--to-skinny" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
   <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-skinny</code></span></span>
-  <p class="">Stays within the skinny-container. Only "touches" the sides on smaller viewports.</p>
+  <p class="">Stays within the skinny-width. Only "touches" the sides on smaller viewports.</p>
   <img class="css-breakout--to-site" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
   <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-site</code></span></span>
-  <p class="">Will always "touch" the site-width.</p>
+  <p class="">Will always "touch" the site-width, but no further.</p>
   <img class="css-breakout--to-max" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
   <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-max</code></span></span>
-  <p class="">Will always "touch" the edge of the browser</p>
+  <p class="">Will always "touch" the edge of the browser.</p>
   <div class="css-breakout--to-site">
     <div style="background:whitesmoke; padding:0.25em 0.5em">
       <h4>Works with Text just as well!</h4>
