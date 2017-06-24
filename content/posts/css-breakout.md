@@ -1,8 +1,15 @@
+<img class="css-breakout--to-max" src="/images/css-breakout-game.gif" style="
+  max-height: 250px;
+  z-index: 0;
+  transform: translateZ(0);
+">
+
 ## Summary
 
-What CSS Breakout does appears very simple. It "breaks" out of a normal container to either the inner, outer, or the maximum browser boundaries. Extremely little HTML work is required.
+What CSS Breakout does appears very simple. It "breaks" out of a normal container to either the inner, outer, or the maximum browser boundaries. No closing and then reopening divs is necessary. Absolutely no special HTML structure is required.
 
-<img src="/images/css-breakout.gif">
+<img src="/images/css-breakout.gif" class="css-breakout--to-skinny-container">
+
 
 ## Live Demo
 
@@ -40,7 +47,10 @@ Say you're in a WYSIWYG and you'd like to push your content to the outer edges o
       <YOUR_ELEMENT class="css-breakout--to-max"></<YOUR_ELEMENT>
     </div>
 
-## The Variables that make CSS-Breakout work
+    <div class="site-container">
+      <YOUR_ELEMENT class="css-breakout--to-site-container"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="css-breakout--to-max"></<YOUR_ELEMENT>
+    </div>
 
 ### css-breakout classes to put on the breakout items:
 
@@ -65,20 +75,20 @@ Sometimes I wonder how I did this. It's a little confusing. But here goes: CSS B
 * `vw` in CSS
 * `media-queries`
 
-I have 2 `container` widths that I use. The first one is a `site-container` which is the outer limits to my content. The other one I use I call a `skinny-container`. I use `body container` for blogs content because it's easier to read skinnier pages.
+I have 2 `container` widths that I use. The first one is a `site-container` (other libraries call it container but I prefer `site-container` as `container` is too broad a term for me and makes troubleshooting tedious) which is the outer limits to my content. The other one I use I call a `skinny-container`. I use `skinny-container` for blogs content because it's easier to read skinnier pages.
 
 Putting it all together took a lot of figuring things out and a lot of trial and error.
 
+It should go without saying, but make sure you don't have an `overflow: hidden` on any of your outer elements.
+
 The strategy to get it working correctly is to:
+# first let a media query decide how to "breakout"
+# if you're within the $skinny-container, just
 * find the center
 * figure out the proper width
 
 There are 2 parts to getting this to work: The first part is to push the left margin into the center of the page. The second part is to pull it back.
 
-There are 3 properties we care about:
-* width
-* max-width
-* margin-left
-
-* viewport
-*
+CSS Breakout works primarily because of There are 3 things we care about:
+* media queries
+* margin-left property
