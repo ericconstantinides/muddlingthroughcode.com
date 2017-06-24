@@ -4,7 +4,16 @@ $site-padding: 0.5em;
 $skinny-width: 700px;
 $skinny-padding: 2em;
 
+//---------------------------------------------------------
+// parse-num: remove any units from the variable
+//---------------------------------------------------------
+@function parse-num($value) {
+  @return $value / ($value * 0 + 1);
+}
 
+//---------------------------------------------------------
+// convert-to-pixels: convert the given value to pixels (if necessary)
+//---------------------------------------------------------
 @function convert-to-pixels($value, $label) {
   @if unit($value) == "px" {
     @return $value;
@@ -13,7 +22,7 @@ $skinny-padding: 2em;
     @if unit($value) == "rem" {
       @return $value / 1rem * $root-pixels;
     } @else if unit($value) == "em" {
-      @return $value / 1em * $root-pixels;
+      @return (parse-num($value) * 1rem) / 1rem * $root-pixels;
     } @else {
       @error $label must be either em, rem, or px;
     }
@@ -46,22 +55,34 @@ $skinny-padding-2x: $skinny-padding * 2;
   margin-left: auto;
   margin-right: auto;
 }
+// if you nest containers, negate out the site-container's padding:
+.site-container .skinny-container {
+  $new-padding: $skinny-padding-2x - $site-padding-2x;
+  width: calc(100% - #{$new-padding});
+}
 
-.css-breakout--to-skinny-container,
-.css-breakout--to-site-container,
-.css-breakout--to-max {
+.css-breakout--to-skinny,
+.css-breakout--to-site,
+.css-breakout--to-max,
+.css-breakout--auto {
   max-width: none;
   width: 100vw;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// css-breakout--to-skinny-container
+// css-breakout--to-skinny
 // Only "breaks out" on smaller viewports
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-.site-container .css-breakout--to-skinny-container {
-  max-width: 100%;
-}
-.skinny-container .css-breakout--to-skinny-container {
+// .site-container .css-breakout--to-skinny {
+//   max-width: 100%;
+// }
+// .site-container .skinny-container .css-breakout--to-skinny {
+//   max-width: none;
+// }
+.skinny-container .css-breakout--to-skinny,
+.skinny-container .css-breakout--auto,
+.site-container .skinny-container .css-breakout--to-skinny,
+.site-container .skinny-container .css-breakout--auto {
   // Skinny and up to the skinny-container
   @media only screen and (max-width: $px-skinny-width) {
     margin-left: $neg-skinny-padding;
@@ -77,8 +98,9 @@ $skinny-padding-2x: $skinny-padding * 2;
     margin-left: 0;
   }
 }
-
-.site-container .css-breakout--to-site-container {
+.site-container .css-breakout--to-skinny,
+.site-container .css-breakout--to-site,
+.site-container .css-breakout--auto {
   // Skinny and up to the site-container
   @media only screen and (max-width: $px-site-width) {
     margin-left: $neg-site-padding;
@@ -95,11 +117,16 @@ $skinny-padding-2x: $skinny-padding * 2;
   }
 }
 
+.site-container .skinny-container .css-breakout--to-site,
+.site-container .skinny-container .css-breakout--auto {
+
+}
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// css-breakout--to-site-container
+// css-breakout--to-site
 // This always extends to the contained width of the site
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-.skinny-container .css-breakout--to-site-container {
+.skinny-container .css-breakout--to-site {
   // skinny and up to the skinny-container-with-padding
   @media only screen and (max-width: $px-skinny-width-with-padding) {
     margin-left: $neg-skinny-padding;

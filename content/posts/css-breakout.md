@@ -6,9 +6,9 @@
 
 ## Summary
 
-What CSS Breakout does appears very simple. It "breaks" out of a normal container to either the inner, outer, or the maximum browser boundaries. No closing and then reopening divs is necessary. Absolutely no special HTML structure is required.
+What CSS Breakout does appears very simple. It "breaks" out of a normal container to either the inner, outer, or the maximum browser boundaries. No closing and then reopening divs is necessary. Absolutely no special HTML structure is required. And it's all done in pure CSS - no javascript needed.
 
-<img src="/images/css-breakout.gif" class="css-breakout--to-skinny-container">
+<img src="/images/css-breakout.gif" class="css-breakout--auto">
 
 
 ## Live Demo
@@ -16,16 +16,16 @@ What CSS Breakout does appears very simple. It "breaks" out of a normal containe
 Move your browser in and out and see how it works.
 
 <div class="dash-overlay">
-  <img class="css-breakout--to-skinny-container" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-skinny-container</code></span></span>
+  <img class="css-breakout--to-skinny" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-skinny</code></span></span>
   <p class="">Stays within the skinny-container. Only "touches" the sides on smaller viewports.</p>
-  <img class="css-breakout--to-site-container" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-site-container</code></span></span>
+  <img class="css-breakout--to-site" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-site</code></span></span>
   <p class="">Will always "touch" the site-width.</p>
   <img class="css-breakout--to-max" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
   <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-max</code></span></span>
   <p class="">Will always "touch" the edge of the browser</p>
-  <div class="css-breakout--to-site-container">
+  <div class="css-breakout--to-site">
     <div style="background:whitesmoke; padding:0.25em 0.5em">
       <h4>Works with Text just as well!</h4>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est.</p>
@@ -33,29 +33,30 @@ Move your browser in and out and see how it works.
   </div>
 </div>
 
-## Why do I need to do this?
+## Why do I need this?
 
-Say you're in a WYSIWYG and you'd like to push your content to the outer edges of the screen. Using CSS Breakout, you can. This solution relies on only CSS so it's fast and extremely portable.
+Say you're displaying content from a very rigid WYSIWYG and you'd like to push your content to the outer edges of the screen. Using CSS Breakout, you can. This solution relies on only CSS so it's fast and extremely portable.
 
-## The Structure
+## How does CSS Breakout work?
 
 ### css-breakout HTML structure
 
     <div class="skinny-container">
-      <YOUR_ELEMENT class="css-breakout--to-skinny-container"></<YOUR_ELEMENT>
-      <YOUR_ELEMENT class="css-breakout--to-site-container"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="css-breakout--to-skinny"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="css-breakout--to-site"></<YOUR_ELEMENT>
       <YOUR_ELEMENT class="css-breakout--to-max"></<YOUR_ELEMENT>
     </div>
 
     <div class="site-container">
-      <YOUR_ELEMENT class="css-breakout--to-site-container"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="css-breakout--to-site"></<YOUR_ELEMENT>
       <YOUR_ELEMENT class="css-breakout--to-max"></<YOUR_ELEMENT>
     </div>
 
 ### css-breakout classes to put on the breakout items:
 
- * `css-breakout--to-skinny-container`
- * `css-breakout--to-site-container`
+ * `css-breakout--to-auto` automatically breaks out on thin viewports regardless of container.
+ * `css-breakout--to-skinny` breaks
+ * `css-breakout--to-site`
  * `css-breakout--to-max`
 
 These are the variables that make CSS Breakout run. I've included my values but you can use whatever values you like.
@@ -92,3 +93,10 @@ There are 2 parts to getting this to work: The first part is to push the left ma
 CSS Breakout works primarily because of There are 3 things we care about:
 * media queries
 * margin-left property
+
+## Caveats
+
+* make sure you don't have an `overflow: hidden` on any of the containing elements.
+* doesn't work on nested containers
+* if you change your padding using media queries, it will probably break. You'll have to adjust accordingly.
+* It gets confusing and weird when you next `site-container` and `skinny-container`. It can be easily done, but I find it makes
