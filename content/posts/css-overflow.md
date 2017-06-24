@@ -44,13 +44,13 @@ When the viewport is <em>inside</em> the `$site-width`, body and image percentag
  * `css-o--image-width-66_6p`  image width 66.6%, body width 33.3%
  * `css-o--image-width-75p`    image width 75%,   body width 25%
 * **Body Width (optional)**
- * `css-o--body-width-25p`   force body width 25%   _(optional)_
- * `css-o--body-width-33_3p` force body width 33.3% _(optional)_
- * `css-o--body-width-40p`   force body width 40%   _(optional)_
- * `css-o--body-width-50p`   force body width 50%   _(optional)_
- * `css-o--body-width-60p`   force body width 60%   _(optional)_
- * `css-o--body-width-66_6p` force body width 66.6% _(optional)_
- * `css-o--body-width-75p`   force body width 75%   _(optional)_
+ * `css-o--skinny-width-25p`   force body width 25%   _(optional)_
+ * `css-o--skinny-width-33_3p` force body width 33.3% _(optional)_
+ * `css-o--skinny-width-40p`   force body width 40%   _(optional)_
+ * `css-o--skinny-width-50p`   force body width 50%   _(optional)_
+ * `css-o--skinny-width-60p`   force body width 60%   _(optional)_
+ * `css-o--skinny-width-66_6p` force body width 66.6% _(optional)_
+ * `css-o--skinny-width-75p`   force body width 75%   _(optional)_
 * **Special**
  * `css-o--vertical`         ignores widths and displays image then body
  * `css-o--body-top`         vertically align text to the top instead of center
@@ -63,7 +63,7 @@ Structure and classes:
 <pre>
 css-o--full-browser-width     = overflows out to the entire viewport
 css-o--site-container-width   = overflows out to the $site-width
-css-o--inner-body-width       = overflows out to the $body-width
+css-o--inner-skinny-width       = overflows out to the $skinny-width
 </pre>
 
 ## The Variables in make-css-overflow:

@@ -23,14 +23,14 @@
   @extend .site-container--wide;
   width: 100%;
 }
-.body-container {
-  width: calc(100% - ( #{$body-padding} * 2) );
-  max-width: $body-width;
+.skinny-container {
+  width: calc(100% - ( #{$skinny-padding} * 2) );
+  max-width: $skinny-width;
   margin-left: auto;
   margin-right: auto;
 }
 @media only screen and (max-width: $bp-medium-large) and (orientation: landscape) {
-  .body-container {
+  .skinny-container {
     width: 66.667%;
     overflow: hidden;
   }
