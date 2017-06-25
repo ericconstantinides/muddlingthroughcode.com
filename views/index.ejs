@@ -12,7 +12,7 @@
         <h3 class="post__date"><%= post.dateDisplay %></h3>
         <h1 class="post__title"><a href="/posts/<%= post.slug %>"><%= post.title %></a></h1>
       </header>
-      <%- post.content %>
+      <%- post.teaser %>
     </article>
   <% }}) %>
 </div>

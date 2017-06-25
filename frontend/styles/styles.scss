@@ -12,6 +12,7 @@ $title-font-family: Seravek, Georgia, Palatino, serif;
 
 @import "erics_base_variables";
 @import "erics_base_styles";
+@import "css-breakout";
 
 .site-header,
 .site-footer {
@@ -73,7 +74,7 @@ h1 {
 h2 {
   margin: 2rem 0 1rem;
   line-height: 1.2;
-  @include responsive(font-size, 1.25, 1, 500);
+  @include responsive(font-size, 1.5, 1, 500);
 }
 h3 {
   text-transform: uppercase;
@@ -135,6 +136,29 @@ a:hover {
 }
 a:hover {
   text-decoration: underline;
+}
+.more-link__p {
+  margin-top: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+.more-link__outer {
+  &:before {
+    margin-right: 0.5em;
+    content: "🙈";
+  }
+}
+.more-link {
+  font-weight: bold;
+  &:after {
+    content: " =>";
+  }
+}
+
+body.post-index {
+  .post-index--hide {
+    display: none;
+  }
 }
 .post {
   &:after {

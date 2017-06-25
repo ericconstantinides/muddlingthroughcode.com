@@ -1,15 +1,15 @@
 [
   {
+    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0;'><img src='/images/logo--react.png' style='height: 100%'></div>",
     "title": "Why I'm leaving the LAMP stack and embracing the MERN stack",
-    "filetype": "markdown",
     "date": "2017-06-19",
     "dateDisplay": "Monday, June 19 2017",
     "file": "muddling-01.md",
     "active": true
   },
   {
+    "preHtml": "<img class='css-breakout--to-max' src='/images/css-breakout-game.gif' style='max-height:250px;z-index:0;transform:translateZ(0)'>",
     "title": "CSS Breakout",
-    "filetype": "markdown",
     "date": "2017-06-26",
     "dateDisplay": "Monday, June 26 2017",
     "file": "css-breakout.md",
@@ -17,8 +17,8 @@
     "active": true
   },
   {
+    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0; color: white; font-family: monospace; font-size: 2em;'>#cheetsheet</div>",
     "title": "Express / Node.js Cheatsheet",
-    "filetype": "markdown",
     "date": "2017-06-22",
     "dateDisplay": "Thursday, June 22 2017",
     "file": "express-nodejs-cheatsheet.md",

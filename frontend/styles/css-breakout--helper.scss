@@ -10,7 +10,6 @@
     outline: 1px dashed #ccc;
   }
 }
-
 .class-overlay__outer {
   display: block;
   height: 0;
@@ -20,6 +19,11 @@
 .class-overlay__inner {
   transform: translateY(calc(-100% + 1px));
   display: block;
+}
+body.post-page {
+  .site-header {
+    margin-bottom: 0;
+  }
 }
 @media only screen and (max-width: 500px) {
   .class-overlay__outer {

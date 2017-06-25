@@ -5,6 +5,12 @@ const escape = require('escape-html');
 const slug = require('slug');
 var router = express.Router();
 
+function teaserBreak(string, addOn) {
+  let teaser = string.substr(0, string.indexOf('[//]:#((teaserBreak))'));
+  if (teaser === '') return string;
+  return (teaser + addOn);
+}
+
 /* GET home page. */
 // let blog;
 let about;
@@ -19,13 +25,14 @@ posts.forEach((postObj) => {
   postObj.slug = slug(postObj.title).toLowerCase();
   fs.readFile(`./content/posts/${postObj.file}`, 'utf8', (err, postText) => {
     if (err) throw err;
-    if (postObj.filetype === 'markdown') postObj.content = marked(postText);
-    else postObj.content = '<pre>' + escape(postText) + '</pre>';
+    postObj.teaser = marked(teaserBreak(postText,`<p class="more-link__p"><span class="more-link__outer"><a class="more-link" href="/posts/${postObj.slug}">Read On</a></span></p>`));
+    postObj.content = marked(postText);
   });
   router.get(`/posts/${postObj.slug}`, function(req, res, next) {
     res.render('post', {
       title: `${postObj.title} | Muddling Through Code`,
       post: postObj,
+      className: 'post-page',
       about: about
     });
   });
@@ -35,6 +42,7 @@ router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Muddling Through Code',
     posts: posts,
+    className: 'post-index',
     about: about
   });
 });

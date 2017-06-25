@@ -2,6 +2,9 @@
 <% include partials/site-header %>
 <div class="skinny-container">
   <article class="post u-mb-4">
+  <% if (typeof post.preHtml !== 'undefined') { %>
+    <%- post.preHtml %>
+  <% } %>
     <% if (typeof post.css !== 'undefined') { %>
       <% post.css.forEach(cssfile => { %>
         <link rel="stylesheet" href="/css/<%- cssfile %>">

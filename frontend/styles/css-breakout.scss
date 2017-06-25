@@ -2,7 +2,7 @@ $root-pixels: 18px;
 $site-width: 980px;
 $site-padding: 1em;
 $skinny-width: 700px;
-$skinny-padding: 2em;
+$skinny-padding: 1.25em;
 
 //---------------------------------------------------------
 // parse-num: remove any units from the variable
@@ -12,7 +12,7 @@ $skinny-padding: 2em;
 }
 
 //---------------------------------------------------------
-// convert-to-pixels: convert the given value to pixels (if necessary)
+// convert-to-pixels: convert the given value to pixels
 //---------------------------------------------------------
 @function convert-to-pixels($value, $label) {
   @if unit($value) == "px" {
@@ -22,6 +22,7 @@ $skinny-padding: 2em;
     @if unit($value) == "rem" {
       @return $value / 1rem * $root-pixels;
     } @else if unit($value) == "em" {
+      // force it to rem and return it
       @return (parse-num($value) * 1rem) / 1rem * $root-pixels;
     } @else {
       @error $label must be either em, rem, or px;
@@ -73,22 +74,16 @@ $skinny-padding-2x: $skinny-padding * 2;
 // css-breakout--to-skinny
 // Only "breaks out" on smaller viewports
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// .site-container .css-breakout--to-skinny {
-//   max-width: 100%;
-// }
-// .site-container .skinny-container .css-breakout--to-skinny {
-//   max-width: none;
-// }
-.skinny-container .css-breakout--to-skinny,
-.skinny-container .css-breakout--auto,
 .site-container .skinny-container .css-breakout--to-skinny,
-.site-container .skinny-container .css-breakout--auto {
+                .skinny-container .css-breakout--to-skinny,
+.site-container .skinny-container .css-breakout--auto,
+                .skinny-container .css-breakout--auto {
   // Skinny and up to the skinny-container
   @media only screen and (max-width: $px-skinny-width) {
     margin-left: $neg-skinny-padding;
   }
   // tweener period between where the body container loses all of its padding
-  @media only screen and (min-width: $px-skinny-width + 1px ) and (max-width: $px-skinny-width-with-padding) {
+  @media only screen and (min-width: $px-skinny-width + 1px) and (max-width: $px-skinny-width-with-padding) {
     width: $px-skinny-width;
     margin-left: calc(50vw - #{$px-skinny-width-with-padding} / 2);
   }
@@ -106,10 +101,10 @@ $skinny-padding-2x: $skinny-padding * 2;
     margin-left: $neg-site-padding;
   }
   // tweener period between where the body container loses all of its padding
-  @media only screen and (min-width: $px-skinny-width + 1px ) and (max-width: $px-site-width-with-padding) {
+  @media only screen and (min-width: $px-skinny-width + 1px) and (max-width: $px-site-width-with-padding) {
     width: $px-skinny-width;
-    $temp: $px-skinny-width + $px-site-padding;
-    margin-left: calc(50vw - #{$temp} / 2);
+    $px-skinny-width-with-site-padding: $px-skinny-width + $px-site-padding;
+    margin-left: calc(50vw - #{$px-skinny-width-with-site-padding} / 2);
   }
   // from the skinny-container-with-padding and larger
   @media only screen and (min-width: $px-site-width-with-padding + 1px) {
@@ -119,12 +114,12 @@ $skinny-padding-2x: $skinny-padding * 2;
 }
 .site-container .css-breakout--to-site,
 .site-container .css-breakout--auto {
-  // Skinny and up to the site-container
+  // Skinny and up to the site-width
   @media only screen and (max-width: $px-site-width) {
     margin-left: $neg-site-padding;
   }
-  // tweener period between where the body container loses all of its padding
-  @media only screen and (min-width: $px-site-width + 1px ) and (max-width: $px-site-width-with-padding) {
+  // tweener period between where the site-width and the site-width-with-padding
+  @media only screen and (min-width: $px-site-width + 1px) and (max-width: $px-site-width-with-padding) {
     width: $px-site-width;
     margin-left: calc(50vw - #{$px-site-width-with-padding} / 2);
   }
@@ -133,11 +128,6 @@ $skinny-padding-2x: $skinny-padding * 2;
     width: 100%;
     margin-left: 0;
   }
-}
-
-.site-container .skinny-container .css-breakout--to-site,
-.site-container .skinny-container .css-breakout--auto {
-
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -160,17 +150,18 @@ $skinny-padding-2x: $skinny-padding * 2;
     margin-left: (($px-site-width - $px-skinny-width) / -2);
   }
 }
+
 .site-container .css-breakout--to-max {
-  // site and up to the site-container-with-padding
+  // site and up to the site-width-with-padding
   @media only screen and (max-width: $px-site-width-with-padding) {
     // break out of the site-container at the same rate as the padding
     margin-left: $neg-site-padding;
   }
-  // from the site-container-with-padding and larger
+  // from the site-width-with-padding and larger
   @media only screen and (min-width: $px-site-width-with-padding + 1px) {
     // We start with "pulling left" exactly half the viewport.
     // From there we "add back on" half the width of the body, which puts us directly in the center
-    margin-left: calc(-50vw + (#{$px-site-width} / 2));
+    margin-left: calc(-50vw + 50%);
   }
 }
 
@@ -188,6 +179,6 @@ $skinny-padding-2x: $skinny-padding * 2;
   @media only screen and (min-width: $px-skinny-width-with-padding + 1px) {
     // We start with "pulling left" exactly half the viewport.
     // From there we "add back on" half the width of the body, which puts us directly in the center
-    margin-left: calc(-50vw + (#{$px-skinny-width} / 2));
+    margin-left: calc(-50vw + 50%);
   }
 }
