@@ -33,6 +33,7 @@ posts.forEach((postObj) => {
       title: `${postObj.title} | Muddling Through Code`,
       post: postObj,
       className: 'post-page',
+      description: postObj.description,
       about: about
     });
   });
@@ -43,6 +44,7 @@ router.get('/', function(req, res, next) {
     title: 'Muddling Through Code',
     posts: posts,
     className: 'post-index',
+    description: 'Welcome to {muddling through code}. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
     about: about
   });
 });
