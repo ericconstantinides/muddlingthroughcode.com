@@ -14,6 +14,13 @@ $title-font-family: Seravek, Georgia, Palatino, serif;
 @import "erics_base_styles";
 @import "css-breakout";
 
+p, ul, ol, li {
+  @include responsive(font-size, 1rem, 0.65rem, 500);
+}
+code, pre {
+  @include responsive(font-size, 0.85rem, 0.6rem, 500);
+}
+
 .site-header,
 .site-footer {
   background: whitesmoke;
@@ -84,19 +91,20 @@ h3 {
 }
 pre,
 code {
-  font-size: 0.75em;
+  // font-size: 0.75em;
   line-height: 1.4;
   background: #f0f0f0;
   border: 1px solid #e2e2e2;
 }
 pre {
   padding: 0.5em 1em;
+  overflow: scroll;
 }
 code {
   padding: 0.25em 0.5em;
 }
 pre > code {
-  font-size: initial;
+  // font-size: initial;
   line-height: initial;
   background: initial;
   border: initial;

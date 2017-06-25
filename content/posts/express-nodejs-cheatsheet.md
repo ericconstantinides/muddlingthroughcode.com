@@ -16,7 +16,8 @@ This is a cheatsheet I created for myself when learning Node / Express. Relative
   * in app:
 
         app.get('/monkey/:monkeyName', (req, res) => {
-          res.render('myTemplate', { // looks in 'views' folder; '.ejs' is OPTIONAL
+          // .render() looks in 'views' folder; '.ejs' is OPTIONAL:
+          res.render('myTemplate', {
             let thisMonkey = req.params.monkeyName;
             title: 'Monkey Page',
             className: 'monkey',

@@ -1,14 +1,24 @@
 $root-pixels: 18px;
 $site-width: 980px;
-$site-padding: 1em;
+$site-padding: 1rem;
 $skinny-width: 700px;
-$skinny-padding: 1.25em;
+$skinny-padding: 1.25rem;
 
 //---------------------------------------------------------
 // parse-num: remove any units from the variable
 //---------------------------------------------------------
 @function parse-num($value) {
   @return $value / ($value * 0 + 1);
+}
+
+//---------------------------------------------------------
+// convert-to-rem: convert the em value to rem value
+//---------------------------------------------------------
+@function convert-to-rem($value) {
+  @if unit($value) == "em" {
+    @return parse-num($value) * 1rem;
+  }
+  @return $value;
 }
 
 //---------------------------------------------------------
@@ -39,8 +49,8 @@ $px-site-width-with-padding: $px-site-width + $px-site-padding;
 $px-skinny-width: convert-to-pixels($skinny-width, '$skinny-width');
 $px-skinny-padding: convert-to-pixels($skinny-padding, '$skinny-padding') * 2;
 $px-skinny-width-with-padding: $px-skinny-width + $px-skinny-padding;
-$neg-site-padding: $site-padding * -1;
-$neg-skinny-padding: $skinny-padding * -1;
+$neg-site-padding: convert-to-rem($site-padding) * -1;
+$neg-skinny-padding: convert-to-rem($skinny-padding) * -1;
 $site-padding-2x: $site-padding * 2;
 $skinny-padding-2x: $skinny-padding * 2;
 
