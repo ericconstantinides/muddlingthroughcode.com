@@ -26,7 +26,7 @@ Then the database. Since I'm starting anew, I want to get away from rigid SQL da
 
 I decided my first site would be to convert [ericconstantinides.com](https://www.ericconstantinides.com) from static HTML / Apache / JS to a Node / Express / JS site. I didn't want to involve any React or anything too intense just yet. I just wanted to get used to having a simple site up and running with my new stack. I converted most of the data to JSON and was able to get it working in a few days. That wasn't so bad!
 
-I also decided that all of my personal websites will now be up and running on [my GitHub account](github.com/ericconstantinides). I want people to know who I am and what I'm about. No more playing in the dark.
+I also decided that all of my personal websites will now be up and running on [my GitHub account](//github.com/ericconstantinides). I want people to know who I am and what I'm about. No more playing in the dark.
 
 Where do I host? I use [Digital Ocean](https://www.digitalocean.com/) for all my Drupal sites, but I wanted something specific for my new stack. I looked into [AWS](https://aws.amazon.com/) but it is too complex (for now) to get up and running right away. For the time being I decided on [Heroku](https://www.heroku.com/). They have a nice freemium model that is easy to get up and going (I ended up paying $7/month so that the site would have instant spin-up (good job, Heroku)).
 

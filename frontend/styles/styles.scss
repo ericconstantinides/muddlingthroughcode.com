@@ -69,6 +69,17 @@ code, pre {
   font-size: 0.675em;
   text-align: center;
 }
+.footer-links {
+  display: flex;
+  justify-content: center;
+}
+.footer-links__link {
+  padding: 0 0.5em;
+}
+.footer-links__image {
+  width: 28px;
+  display: block;
+}
 .about__content p {
   font-size: 0.875em;
 }

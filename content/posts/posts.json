@@ -1,28 +1,28 @@
 [
   {
-    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0;'><img src='/images/logo--react.png' style='height: 100%'></div>",
     "title": "Why I'm leaving the LAMP stack and embracing the MERN stack",
     "description": "Choosing your own path is tough in life. This is my path.",
-    "date": "2017-06-19",
+    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0;'><img src='/images/logo--react.png' style='height: 100%'></div>",
+    "date": "2017-06-25T04:54:54.898Z",
     "dateDisplay": "Monday, June 19 2017",
     "file": "muddling-01.md",
     "active": true
   },
   {
-    "preHtml": "<img class='css-breakout--to-max' src='/images/css-breakout-game.gif' style='max-height:250px;z-index:0;transform:translateZ(0)'>",
-    "description": "CSS Breakout lets you finally break out of containers gracefully. It relies on only pure CSS so it's fast and extremely portable.",
     "title": "CSS Breakout",
-    "date": "2017-06-26",
+    "description": "CSS Breakout lets you finally break out of containers gracefully. It relies on only pure CSS so it's fast and extremely portable.",
+    "preHtml": "<img class='css-breakout--to-max' src='/images/css-breakout-game.gif' style='max-height:250px;z-index:0;transform:translateZ(0)'>",
+    "date": "2017-06-25T04:54:54.898Z",
     "dateDisplay": "Monday, June 26 2017",
     "file": "css-breakout.md",
     "css": ["css-breakout.css", "css-breakout--helper.css"],
     "active": true
   },
   {
-    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0; color: white; font-family: monospace; font-size: 2em;'>#cheetsheet</div>",
-    "description": "This is a cheatsheet I created for myself when learning Node / Express. Relatively simple stuff here but it helps me out.",
     "title": "Express / Node.js Cheatsheet",
-    "date": "2017-06-22",
+    "description": "This is a cheatsheet I created for myself when learning Node / Express. Relatively simple stuff here but it helps me out.",
+    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0; color: white; font-family: monospace; font-size: 2em;'>#cheetsheet</div>",
+    "date": "2017-06-25T04:54:54.898Z",
     "dateDisplay": "Thursday, June 22 2017",
     "file": "express-nodejs-cheatsheet.md",
     "active": true
