@@ -29,12 +29,11 @@
   margin-left: auto;
   margin-right: auto;
 }
-@media only screen and (max-width: $bp-medium-large) and (orientation: landscape) {
-  .skinny-container {
-    width: 66.667%;
-    overflow: hidden;
-  }
-}
+// @media only screen and (max-width: $bp-medium-large) and (orientation: landscape) {
+//   .skinny-container {
+//     max-width: 66.667%;
+//   }
+// }
 
 //---------------------------------------------------------
 // Site Sections

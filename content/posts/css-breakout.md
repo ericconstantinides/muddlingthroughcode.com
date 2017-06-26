@@ -41,15 +41,15 @@ CSS Breakout works because we have a few (newer) things at our disposal: `SASS`,
 Move your browser in and out and see how it works.
 
 <div class="dash-overlay">
-  <img class="css-breakout--to-skinny" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-skinny</code></span></span>
-  <p class="">Stays within the skinny-width. Only "touches" the sides on smaller viewports.</p>
-  <img class="css-breakout--to-site" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-site</code></span></span>
-  <p class="">Will always "touch" the site-width, but no further.</p>
   <img class="css-breakout--to-max" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
   <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-max</code></span></span>
   <p class="">Will always "touch" the edge of the browser.</p>
+  <img class="css-breakout--to-site" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-site</code></span></span>
+  <p class="">Will always "touch" the site-width, but no further.</p>
+  <img class="css-breakout--to-skinny" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-skinny</code></span></span>
+  <p class="">Stays within the skinny-width. Only "touches" the sides on smaller viewports.</p>
   <div class="css-breakout--to-site" style="background:whitesmoke; padding:0.25em 0.5em">
     <h4>Works with Text just as well!</h4>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est.</p>

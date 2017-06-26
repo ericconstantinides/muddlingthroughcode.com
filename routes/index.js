@@ -19,7 +19,7 @@ let feed = new Feed({
   description: 'Welcome to {muddling through code}. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
   id: 'https://www.muddlingthroughcode.com/',
   link: 'https://www.muddlingthroughcode.com/',
-  // image: 'http://www.muddlingthroughcode.com/image.png',
+  // image: 'https://www.muddlingthroughcode.com/image.png',
   favicon: 'https://www.muddlingthroughcode.com/favicon.ico',
   copyright: 'All rights reserved, Eric Constantinides',
   // updated: new Date(2013, 06, 14), // optional, default = today

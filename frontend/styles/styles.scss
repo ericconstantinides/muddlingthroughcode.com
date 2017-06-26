@@ -122,11 +122,14 @@ pre > code {
   padding: 0;
 }
 
-ul {
+ul,ol {
   margin-left: 1em;
 }
-li {
+ul > li {
   text-indent: -0.325em;
+}
+ol li li {
+  margin-left: 1.25em;
 }
 
 strong {
@@ -172,6 +175,10 @@ a:hover {
   &:after {
     content: " =>";
   }
+}
+.text-small {
+  font-size: 0.75em;
+  margin-bottom: 0;
 }
 
 body.post-index {
