@@ -15,7 +15,7 @@ function teaserBreak(string, addOn) {
 
 // prepare RSS
 let feed = new Feed({
-  title: 'muddling through code',
+  title: '{ muddling through code }',
   description: 'Welcome to {muddling through code}. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
   id: 'https://www.muddlingthroughcode.com/',
   link: 'https://www.muddlingthroughcode.com/',
@@ -72,7 +72,7 @@ posts.forEach((postObj) => {
 
   router.get(`/posts/${postObj.slug}`, function(req, res, next) {
     res.render('post', {
-      title: `${postObj.title} | Muddling Through Code`,
+      title: `${postObj.title} { muddling through code }`,
       post: postObj,
       className: 'post-page',
       description: postObj.description,
@@ -83,10 +83,10 @@ posts.forEach((postObj) => {
 
 router.get('/', function(req, res, next) {
   res.render('index', {
-    title: 'Muddling Through Code',
+    title: '{ muddling through code } To learn, sometimes you gotta muddle',
     posts: posts,
     className: 'post-index',
-    description: 'Welcome to {muddling through code}. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
+    description: 'Welcome to { muddling through code }. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
     about: about
   });
 });
