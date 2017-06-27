@@ -1,20 +1,31 @@
 <% include partials/head %>
 <% include partials/site-header %>
-<div class="skinny-container">
-  <article class="post u-mb-4">
-  <% if (typeof post.preHtml !== 'undefined') { %>
-    <%- post.preHtml %>
-  <% } %>
-    <% if (typeof post.css !== 'undefined') { %>
-      <% post.css.forEach(cssfile => { %>
-        <link rel="stylesheet" href="/css/<%- cssfile %>">
-      <% }); %>
-    <% } %>
-    <header class="post__header">
-      <h3 class="post__date"><%- post.dateDisplay %></h3>
-      <h1 class="post__title"><%- post.title %></h1>
-    </header>
-    <%- post.content %>
-  </article>
+<div class="site-header--spacer"></div>
+<% if (typeof post.primaryImage !== 'undefined' && typeof post.primaryImage.image !== 'undefined') { %>
+  <div class="post__primary-image-wrapper" data-target="site-header">
+    <div class="css-breakout--to-max post__primary-image-container <%- post.primaryImage.containerClass %>">
+      <img<% if (typeof post.primaryImage.title !== 'undefined') { %> title="<%= post.primaryImage.title %>"<% } %> src="<%- post.primaryImage.image %>">
+    </div>
+    <div class="css-breakout--to-max post__primary-image-spacer <%- post.primaryImage.containerClass %>">
+      <img src="<%- post.primaryImage.image %>">
+    </div>
+    <% include partials/site-header %>
+  </div>
+<% } %>
+<div id="post__main" class="post__main js-scroll-activation" data-page-position="top" data-scroll-offset="100" data-target="site-header">
+  <div class="skinny-container">
+    <article class="post">
+      <% if (typeof post.css !== 'undefined') { %>
+        <% post.css.forEach(cssfile => { %>
+          <link rel="stylesheet" href="/css/<%- cssfile %>">
+        <% }); %>
+      <% } %>
+      <header class="post__header">
+        <h3 class="post__date"><%- post.dateDisplay %></h3>
+        <h1 class="post__title"><%- post.title %></h1>
+      </header>
+      <%- post.content %>
+    </article>
+  </div>
 </div>
 <% include partials/footer %>

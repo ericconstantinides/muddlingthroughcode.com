@@ -2,16 +2,23 @@
   {
     "title": "Why I'm leaving the LAMP stack and embracing the MERN stack",
     "description": "Choosing your own path is tough in life. This is my path.",
-    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0;'><img src='/images/logo--react.png' style='height: 100%'></div>",
+    "primaryImage": {
+      "image": "/images/i-m-not-trying-to-hurt-you.gif",
+      "title": "I've never seen this movie."
+    },
     "date": "2017-06-25T04:54:54.898Z",
     "dateDisplay": "Monday, June 19 2017",
-    "file": "muddling-01.md",
+    "file": "why-im-leaving-the-lamp-stack.md",
     "active": true
   },
   {
     "title": "CSS Breakout",
     "description": "CSS Breakout lets you finally break out of containers gracefully. It relies on only pure CSS so it's fast and extremely portable.",
-    "preHtml": "<img class='css-breakout--to-max' src='/images/css-breakout-game.gif' style='max-height:250px;z-index:0;transform:translateZ(0)'>",
+    "primaryImage": {
+      "image": "/images/css-breakout-game.gif",
+      "containerClass": "primary-image--stretch",
+      "title": "Atari, FTW!"
+    },
     "date": "2017-06-25T04:54:54.898Z",
     "dateDisplay": "Monday, June 26 2017",
     "file": "css-breakout.md",
@@ -21,10 +28,39 @@
   {
     "title": "Express / Node.js Cheatsheet",
     "description": "This is a cheatsheet I created for myself when learning Node / Express. Relatively simple stuff here but it helps me out.",
-    "preHtml": "<div class='css-breakout--to-max' style='margin-top:-2rem; background-color: #2a2c2e;height: 200px;display: flex;align-items: center;justify-content: center;padding: 2em 0; color: white; font-family: monospace; font-size: 2em;'>#cheetsheet</div>",
+    "primaryImage": {
+      "image": "/images/cheetah-kittens.jpg",
+      "containerClass": "primary-image--full",
+      "title": "Oh I see what you did there. You couldn't figure out anything witty to put there; so instead of a cheater, you put a cheetah."
+    },
     "date": "2017-06-25T04:54:54.898Z",
     "dateDisplay": "Thursday, June 22 2017",
     "file": "express-nodejs-cheatsheet.md",
     "active": true
+  },
+  {
+    "title": "How I got Node.js up and running on the AWS EC2",
+    "description": "This post is a collection of notes that I took moving over from Heroku to AWS.",
+    "primaryImage": {
+      "image": "/images/the-amazon-rainforest.jpg",
+      "containerClass": "primary-image--full",
+      "title": "Remember when Amazon actually referred to a rainforest?"
+    },
+
+    "date": "2017-06-25T04:54:54.898Z",
+    "dateDisplay": "Monday, June 26 2017",
+    "file": "how-i-got-my-node-stack-running-on-aws.md",
+    "active": false
+  },
+  {
+    "title": "Optimizing Images",
+    "description": "How I optimize PNGs",
+    "primaryImage": {
+      "image": "/images/hammer.gif"
+    },
+    "date": "2017-06-25T04:54:54.898Z",
+    "dateDisplay": "Monday, June 26 2017",
+    "file": "optimizing-images.md",
+    "active": false
   }
 ]

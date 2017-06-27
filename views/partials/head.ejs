@@ -2,12 +2,23 @@
 <html>
 <head>
   <title><%= title %></title>
-  <link rel='stylesheet' href='/css/styles.css' />
+  <link rel='stylesheet' href='/css/styles.css'>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
-  <meta name="description" content="<%= description %>">
+  <meta name="description" content="<%- description %>">
+
+  <meta property="og:title" content="<%- ogTitle %>">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="<%- description %>">
+  <meta property="og:url" content="https://www.muddlingthroughcode.com<%- pageUrl %>">
+  <% if (typeof post !== 'undefined' && post.primaryImage) { %>
+    <meta property="og:image" content="<%- hostname %><%- post.primaryImage.image %>">
+  <% } %>
+  <meta property="og:site_name" content="{ muddling through code }">
+
+  <link rel="canonical" href="https://www.muddlingthroughcode.com<%- pageUrl %>">
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png">
@@ -22,4 +33,4 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
-<body class="<%= className %>">
+<body class="<%= className %><% if (typeof post !== 'undefined' && !post.primaryImage) { %> no-primary-image<% } else { %> has-primary-image<% } %>">

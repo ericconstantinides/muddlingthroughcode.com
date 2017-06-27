@@ -27,7 +27,7 @@ code, pre {
 }
 .site-header {
   height: 100px;
-  margin-bottom: 2em;
+  // margin-bottom: 2em;
   border-bottom: 1px solid #ccc;
 }
 .site-header__inner {
@@ -61,7 +61,7 @@ code, pre {
 .site-footer {
   display: flex;
   justify-content: center;
-  padding: 1em 0;
+  padding: 3em 0 1em;
   border-top: 1px solid #ccc;
 }
 .site-footer__copyright {
@@ -182,11 +182,15 @@ a:hover {
 }
 
 body.post-index {
+  .main {
+    padding-top: 2rem;
+  }
   .post-index--hide {
     display: none;
   }
 }
 .post {
+  padding-bottom: 4rem;
   &:after {
     content: "";
     display: block;
@@ -196,7 +200,6 @@ body.post-index {
     background: #aaa;
 
     margin-top: 4em;
-    margin-bottom: 4em;
     margin-left: auto;
     margin-right: auto;
   }
@@ -204,6 +207,83 @@ body.post-index {
     content: none;
   }
 }
+.post__primary-image-spacer,
+.post__primary-image-container {
+  background: black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  img {
+    max-width: $site-width;
+    width: 100%;
+  }
+}
+.post__primary-image-container.primary-image--stretch {
+  img {
+    z-index: 0;
+    transform: translateZ(0);
+    width: 100%;
+  }
+  img,
+  + .post__primary-image-spacer img {
+    max-width: none;
+    max-height: 350px;
+  }
+}
+.post__primary-image-container.primary-image--full {
+  img,
+  + .post__primary-image-spacer img {
+    max-width: none;
+  }
+}
+
+.post__primary-image-spacer {
+  position: static;
+  visibility: hidden;
+}
+
+.post__main {
+  padding-top: 2rem;
+  position: relative;
+  z-index: 1;
+  background: white;
+}
+.site-header--spacer {
+  display: none;
+}
+.post-page.has-primary-image {
+  .site-header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+  .site-header--spacer {
+    display: block;
+    height: 99px;
+  }
+}
+.post-page.has-primary-image {
+  .post__primary-image-wrapper {
+    &.is-active {
+      .post__primary-image-container,
+      .post__primary-image-spacer {
+        z-index: -1
+      }
+    }
+    position: relative;
+    .site-header {
+      position: absolute;
+      bottom: 0;
+      z-index: -1;
+      &.is-active {
+        z-index: 1;
+      }
+    }
+  }
+}
+
 .post__header {
   text-align: center;
   max-width: 500px;
@@ -211,10 +291,34 @@ body.post-index {
   margin-right: auto;
 }
 .post__date {
+  margin-top: 0;
   margin-bottom: 0.25em;
   font-weight: bold;
   font-size: 0.875em;
   text-transform: uppercase;
+}
+
+//—————————————————————————————————————————————————————————————————————
+// Rich Snippets
+//—————————————————————————————————————————————————————————————————————
+
+.rich-snippet {
+
+}
+.rich-snippet__image {
+
+}
+.rich-snippet__image-container {
+
+}
+.rich-snippet__content {
+
+}
+.rich-snippet__title {
+
+}
+.rich-snippet__website {
+
 }
 
 @import "erics_base_post";
