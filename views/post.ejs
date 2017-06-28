@@ -3,10 +3,10 @@
 <div class="site-header--spacer"></div>
 <% if (typeof post.primaryImage !== 'undefined' && typeof post.primaryImage.image !== 'undefined') { %>
   <div class="post__primary-image-wrapper" data-target="site-header">
-    <div class="css-breakout--to-max post__primary-image-container <%- post.primaryImage.containerClass %>">
+    <div class="breakout--to-max post__primary-image-container <%- post.primaryImage.containerClass %>">
       <img<% if (typeof post.primaryImage.title !== 'undefined') { %> title="<%= post.primaryImage.title %>"<% } %> src="<%- post.primaryImage.image %>">
     </div>
-    <div class="css-breakout--to-max post__primary-image-spacer <%- post.primaryImage.containerClass %>">
+    <div class="breakout--to-max post__primary-image-spacer <%- post.primaryImage.containerClass %>">
       <img src="<%- post.primaryImage.image %>">
     </div>
     <% include partials/site-header %>

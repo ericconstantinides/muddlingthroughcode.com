@@ -1,6 +1,6 @@
 CSS Breakout appears to be very simple. It "breaks" out of a normal container to either a skinny container, site container, or to the maximum browser boundaries. No closing and then reopening of a div tree is necessary. Absolutely no special HTML structure is required. And it's all done in pure CSS - no javascript is used whatsoever.
 
-<img class="css-breakout--to-site" src="/images/css-breakout.gif">
+<img class="breakout--to-site" src="/images/css-breakout.gif">
 
 ## Why do I need this?
 
@@ -28,7 +28,7 @@ CSS Breakout works because we have a few (newer) things at our disposal: `SASS`,
     <div class="site-container">
       <div class="skinny-container">
         <!-- your text -->
-        <img class="css-breakout--to-max" src="wide-image">
+        <img class="breakout--to-max" src="wide-image">
         <!-- your text -->
       </div>
     </div>
@@ -41,16 +41,16 @@ CSS Breakout works because we have a few (newer) things at our disposal: `SASS`,
 Move your browser in and out and see how it works.
 
 <div class="dash-overlay">
-  <img class="css-breakout--to-max" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-max</code></span></span>
+  <img class="breakout--to-max" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.breakout--to-max</code></span></span>
   <p class="">Will always "touch" the edge of the browser.</p>
-  <img class="css-breakout--to-site" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-site</code></span></span>
+  <img class="breakout--to-site" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.breakout--to-site</code></span></span>
   <p class="">Will always "touch" the site-width, but no further.</p>
-  <img class="css-breakout--to-skinny" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
-  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.css-breakout--to-skinny</code></span></span>
+  <img class="breakout--to-skinny" src="/images/NYC_Top_of_the_Rock_Pano-condensed.jpg" alt="New York City, Top of the Rock Panoramic">
+  <span class="class-overlay__outer"><span class="class-overlay__inner"><code class="class-overlay">.breakout--to-skinny</code></span></span>
   <p class="">Stays within the skinny-width. Only "touches" the sides on smaller viewports.</p>
-  <div class="css-breakout--to-site" style="background:whitesmoke; padding:0.25em 0.5em">
+  <div class="breakout--to-site" style="background:whitesmoke; padding:0.25em 0.5em">
     <h4>Works with Text just as well!</h4>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu ornare velit, a porta dui. Pellentesque tincidunt, diam porttitor sodales eleifend, risus turpis porttitor felis, non aliquet sapien diam ullamcorper est.</p>
   </div>
@@ -61,10 +61,10 @@ Move your browser in and out and see how it works.
 ### HTML structure
 
     <div class="[site-container, skinny-container]">
-      <YOUR_ELEMENT class="css-breakout--auto"></<YOUR_ELEMENT>
-      <YOUR_ELEMENT class="css-breakout--to-skinny"></<YOUR_ELEMENT>
-      <YOUR_ELEMENT class="css-breakout--to-site"></<YOUR_ELEMENT>
-      <YOUR_ELEMENT class="css-breakout--to-max"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="breakout--auto"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="breakout--to-skinny"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="breakout--to-site"></<YOUR_ELEMENT>
+      <YOUR_ELEMENT class="breakout--to-max"></<YOUR_ELEMENT>
     </div>
 
     <!-- Can also be nested -->
@@ -77,10 +77,10 @@ Move your browser in and out and see how it works.
 
 ### Classes to be used on the breakout items:
 
- * `css-breakout--to-auto` automatically breaks out on thinner viewports regardless of container.
- * `css-breakout--to-skinny` Stays within the skinny-width. Only "touches" the sides on smaller viewports.
- * `css-breakout--to-site` Will always "touch" the site-width, but no further.
- * `css-breakout--to-max` Will always "touch" the edge of the browser.
+ * `breakout--to-auto` automatically breaks out on thinner viewports regardless of container.
+ * `breakout--to-skinny` Stays within the skinny-width. Only "touches" the sides on smaller viewports.
+ * `breakout--to-site` Will always "touch" the site-width, but no further.
+ * `breakout--to-max` Will always "touch" the edge of the browser.
 
 These are the variables that make CSS Breakout run. I've included my values but you can use whatever values you like.
 

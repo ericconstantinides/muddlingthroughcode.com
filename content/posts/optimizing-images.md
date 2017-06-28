@@ -50,7 +50,7 @@ Practice on the **logo-monkey-with-a-banana-before.png** and match it to the **l
 1. Monkey is optimized in **ImageAlpha** at 16 colors (8 colors show aberrations on the monkey's outline)
 1. After optimization, Monkey is **95% smaller** with virtually no loss in quality
 
-<div class="css-breakout--auto" style="display:flex;justify-content:space-around;align-items:flex-end;">
+<div class="breakout--auto" style="display:flex;justify-content:space-around;align-items:flex-end;">
   <figure class="u-ta-c">
     <h3>Before</h3>
    <img width="200px" src="/images/logo-monkey-with-a-banana-before.png?text">

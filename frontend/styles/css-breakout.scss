@@ -72,22 +72,22 @@ $skinny-padding-2x: $skinny-padding * 2;
   width: calc(100% - #{$new-padding});
 }
 
-.css-breakout--to-skinny,
-.css-breakout--to-site,
-.css-breakout--to-max,
-.css-breakout--auto {
+.breakout--to-skinny,
+.breakout--to-site,
+.breakout--to-max,
+.breakout--auto {
   max-width: none;
   width: 100vw;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// css-breakout--to-skinny
+// breakout--to-skinny
 // Only "breaks out" on smaller viewports
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-.site-container .skinny-container .css-breakout--to-skinny,
-                .skinny-container .css-breakout--to-skinny,
-.site-container .skinny-container .css-breakout--auto,
-                .skinny-container .css-breakout--auto {
+.site-container .skinny-container .breakout--to-skinny,
+                .skinny-container .breakout--to-skinny,
+.site-container .skinny-container .breakout--auto,
+                .skinny-container .breakout--auto {
   // Skinny and up to the skinny-container
   @media only screen and (max-width: $px-skinny-width) {
     margin-left: $neg-skinny-padding;
@@ -105,7 +105,7 @@ $skinny-padding-2x: $skinny-padding * 2;
 }
 
 // This could be done by forcing a block and margin-left: auto and margin-right: auto, but I don't want to force a block
-.site-container .css-breakout--to-skinny {
+.site-container .breakout--to-skinny {
   // Skinny and up to the skinny-container
   @media only screen and (max-width: $px-skinny-width) {
     margin-left: $neg-site-padding;
@@ -122,8 +122,8 @@ $skinny-padding-2x: $skinny-padding * 2;
     margin-left: ($px-site-width - $px-skinny-width) / 2;
   }
 }
-.site-container .css-breakout--to-site,
-.site-container .css-breakout--auto {
+.site-container .breakout--to-site,
+.site-container .breakout--auto {
   // Skinny and up to the site-width
   @media only screen and (max-width: $px-site-width) {
     margin-left: $neg-site-padding;
@@ -141,10 +141,10 @@ $skinny-padding-2x: $skinny-padding * 2;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// css-breakout--to-site
+// breakout--to-site
 // This always extends to the contained width of the site
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-.skinny-container .css-breakout--to-site {
+.skinny-container .breakout--to-site {
   // skinny and up to the skinny-container-with-padding
   @media only screen and (max-width: $px-skinny-width-with-padding) {
     margin-left: $neg-skinny-padding;
@@ -161,7 +161,7 @@ $skinny-padding-2x: $skinny-padding * 2;
   }
 }
 
-.site-container .css-breakout--to-max {
+.site-container .breakout--to-max {
   // site and up to the site-width-with-padding
   @media only screen and (max-width: $px-site-width-with-padding) {
     // break out of the site-container at the same rate as the padding
@@ -176,10 +176,10 @@ $skinny-padding-2x: $skinny-padding * 2;
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// css-breakout--to-max
+// breakout--to-max
 // This always extends to the outer edge of the viewport,
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-.skinny-container .css-breakout--to-max {
+.skinny-container .breakout--to-max {
   // skinny and up to the skinny-container-with-padding
   @media only screen and (max-width: $px-skinny-width-with-padding) {
     // break out of the skinny-container at the same rate as the padding
