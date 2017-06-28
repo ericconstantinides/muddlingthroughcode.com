@@ -6,10 +6,23 @@ const slug = require('slug')
 const Feed = require('feed')
 var router = express.Router()
 
-function teaserBreak(string, addOn) {
+function teaserBreak (string, addOn) {
   let teaser = string.substr(0, string.indexOf('[//]:#((teaserBreak))'))
   if (teaser === '') return string
   return (teaser + addOn)
+}
+
+function cleanDate (dateString) {
+  dateString = dateString.replace('-', ',')
+  dateString = dateString.replace('/', ',')
+  return dateString
+}
+function prettyDate (dateString) {
+  dateString = cleanDate(dateString)
+  dateObj = new Date(dateString)
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December']
+  const weekdayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+  return `${weekdayNames[dateObj.getDay()]}, ${monthNames[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
 }
 
 
@@ -19,7 +32,7 @@ let feed = new Feed({
   description: 'Welcome to {muddling through code}. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
   id: 'https://www.muddlingthroughcode.com/',
   link: 'https://www.muddlingthroughcode.com/',
-  // image: 'https://www.muddlingthroughcode.com/image.png',
+  image: 'https://www.muddlingthroughcode.com/images/see-no-evil-monkey-emoji--large.png',
   favicon: 'https://www.muddlingthroughcode.com/favicon.ico',
   copyright: 'All rights reserved, Eric Constantinides',
   // updated: new Date(2013, 06, 14), // optional, default = today
@@ -40,7 +53,7 @@ feed.addCategory('JavaScript')
 
 let about
 let posts = require('../content/posts/posts.json').reverse()
-fs.readFile('./content/about.md', 'utf8', (err, aboutContent) => {
+fs.readFile('./content/about.md','utf8', (err, aboutContent) => {
   if (err) throw err
   about = marked(aboutContent)
 })
@@ -52,6 +65,7 @@ posts.forEach((postObj) => {
     if (err) throw err
     postObj.teaser = marked(teaserBreak(postText,`<p class="more-link__p"><span class="more-link__outer"><a class="more-link" href="/posts/${postObj.slug}">Read On</a></span></p>`))
     postObj.content = marked(postText)
+    postObj.dateDisplay = prettyDate(postObj.date)
 
     // set up the primary image
     if (typeof postObj.primaryImage !== 'undefined' && typeof postObj.primaryImage.image !== 'undefined') {
@@ -72,7 +86,7 @@ posts.forEach((postObj) => {
         email: 'eric@ericconstantinides.com',
         link: 'https://www.ericconstantinides.com'
       }],
-      date: new Date(postObj.date)
+      date: new Date(cleanDate(postObj.date))
       // image: post.image
     })
   })

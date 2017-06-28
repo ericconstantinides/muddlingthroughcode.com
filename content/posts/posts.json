@@ -6,8 +6,7 @@
       "image": "/images/i-m-not-trying-to-hurt-you.gif",
       "title": "I've never seen this movie."
     },
-    "date": "2017-06-25T04:54:54.898Z",
-    "dateDisplay": "Monday, June 19 2017",
+    "date": "2017-06-19",
     "file": "why-im-leaving-the-lamp-stack.md",
     "active": true
   },
@@ -19,8 +18,7 @@
       "containerClass": "primary-image--stretch",
       "title": "Atari, FTW!"
     },
-    "date": "2017-06-25T04:54:54.898Z",
-    "dateDisplay": "Monday, June 26 2017",
+    "date": "2017-06-26",
     "file": "css-breakout.md",
     "css": ["css-breakout.css", "css-breakout--helper.css"],
     "active": true
@@ -33,8 +31,7 @@
       "containerClass": "primary-image--full",
       "title": "Oh I see what you did there. You couldn't figure out anything witty to put there; so instead of a cheater, you put a cheetah."
     },
-    "date": "2017-06-25T04:54:54.898Z",
-    "dateDisplay": "Thursday, June 22 2017",
+    "date": "2017-06-22",
     "file": "express-nodejs-cheatsheet.md",
     "active": true
   },
@@ -46,9 +43,7 @@
       "containerClass": "primary-image--full",
       "title": "Remember when Amazon actually referred to a rainforest?"
     },
-
-    "date": "2017-06-25T04:54:54.898Z",
-    "dateDisplay": "Monday, June 26 2017",
+    "date": "2017-07-03",
     "file": "how-i-got-my-node-stack-running-on-aws.md",
     "active": false
   },
@@ -58,8 +53,7 @@
     "primaryImage": {
       "image": "/images/hammer.gif"
     },
-    "date": "2017-06-25T04:54:54.898Z",
-    "dateDisplay": "Monday, June 26 2017",
+    "date": "2017-07-03",
     "file": "optimizing-images.md",
     "active": false
   }
