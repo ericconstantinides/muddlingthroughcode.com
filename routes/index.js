@@ -94,11 +94,12 @@ posts.forEach((postObj) => {
 })
 
 router.get('/', function(req, res, next) {
+  let protocol = req.secure ? 'https://' : 'http://'
   res.render('index', {
     title: '{ muddling through code } To learn, sometimes you gotta muddle',
     ogTitle: '{ muddling through code }',
     posts: posts,
-    hostname: req.headers.host,
+    hostname: protocol + req.headers.host,
     pageUrl: `/`,
     primaryImage: false,
     className: 'post-index',
