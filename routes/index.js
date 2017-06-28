@@ -59,7 +59,12 @@ fs.readFile('./content/about.md','utf8', (err, aboutContent) => {
 })
 
 // pull the content out of the files:
-posts.forEach((postObj) => {
+posts.forEach((postObj,index) => {
+  // don't run this code if it's not active:
+  if (!postObj.active) {
+    posts.splice(index,1)
+    return
+  }
   postObj.slug = slug(postObj.title).toLowerCase()
   fs.readFile(`./content/posts/${postObj.file}`, 'utf8', (err, postText) => {
     if (err) throw err
@@ -109,6 +114,12 @@ posts.forEach((postObj) => {
 
 router.get('/', function(req, res, next) {
   let protocol = req.secure ? 'https://' : 'http://'
+  posts.forEach((postObj,index) => {
+    if (!postObj.active) {
+      posts.splice(index,1)
+      return
+    }
+  })
   res.render('index', {
     title: '{ muddling through code } To learn, sometimes you gotta muddle',
     ogTitle: '{ muddling through code }',

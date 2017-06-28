@@ -1,7 +1,7 @@
 <% include partials/head %>
 <% include partials/site-header %>
 <main class="main skinny-container">
-  <% posts.forEach(post => { if (post.active) { %>
+  <% posts.forEach(post => { %>
     <article class="post">
       <% if (typeof post.css !== 'undefined') { %>
         <% post.css.forEach(cssfile => { %>
@@ -14,6 +14,6 @@
       </header>
       <%- post.teaser %>
     </article>
-  <% }}) %>
+  <% }) %>
 </main>
 <% include partials/footer %>
