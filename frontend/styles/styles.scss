@@ -26,8 +26,9 @@ code, pre {
   background: whitesmoke;
 }
 .site-header {
-  height: 100px;
-  // margin-bottom: 2em;
+  max-height: 100px;
+  height: 9vw;
+  min-height: 40px;
   border-bottom: 1px solid #ccc;
 }
 .site-header__inner {
@@ -48,7 +49,7 @@ code, pre {
 .site-title {
   font-family: "Courier New", monospace;
   font-size: 2em;
-  @include responsive(font-size,2,0.75,700);
+  @include responsive(font-size,2,0.675,800);
   margin-bottom: 0;
   font-weight: bold;
   letter-spacing: 0.075em;
@@ -261,7 +262,10 @@ body.post-index {
   }
   .site-header--spacer {
     display: block;
-    height: 99px;
+    max-height: 99px;
+    min-height: 40px;
+    height: 9vw;
+    // border-bottom: 1px solid transparent;
   }
 }
 .post-page.has-primary-image {
@@ -320,5 +324,4 @@ body.post-index {
 .rich-snippet__website {
 
 }
-
 @import "erics_base_post";

@@ -3,20 +3,30 @@
 //  Scroll Activation
 //
 //  Summary
-//    Scroll Activation makes a section "active" when it's entire container is scrolled upon
+//    Scroll Activation makes a section "active" when the top of it's container
+//    is scrolled upon
 //
 //  Usage
 //    .js-scroll-activation
-//       Add this class to the container you'd like to make active on scrolling.
+//       Add this class to the element you'd like to make active
 //
-//  Optional
-//    .js-scroll-activation--keep-active
-//       Keeps the section always active once activated; otherwise, the active
+//  Element Options
+//     [data-keep-this-active]
+//       Keeps the item always active once activated; otherwise, the active
 //       will be removed after going back up.
-//     [data-target="TARGET_ID]
-//       Add to the target element and any element you'd like to set 'active'
-//     [data-page-position="top"]
-//       Activates js-page-position on the top of the container instead of the bottom
+//     [data-target="TARGET_ID"
+//       Add to the target element and any element you'd like to set 'is-active'
+//       Just have matching TARGET_IDs
+//     [data-activate-viewport-at-top]
+//       Activation matching occurs at the top of the viewport/window instead of
+//       the bottom
+//     [data-activate-this-at-bottom]
+//       Activation matching occurs at the bottom of the element instead of the
+//       top
+//     [data-manual-offset="NUMBER"] -or- [data-manual-offset="QUERY-SELECTOR"]
+//       Either:
+//        option 1. Offset by a NUMBER of pixels. Do not include "px".
+//        option 2. Offset by another element using a query selector (like a header)
 //
 //  Creates
 //    .is-active
@@ -25,59 +35,98 @@
 //
 //------------------------------------------------------------------------------
 ;(function() {
-  function currentScrollPos() {
-    return (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-  }
-  var scrollActivation = function(items) {
-    ;[...items].forEach((item) => {
-      if (!(item.classList.contains('js-scroll-activation--stop'))) {
-        // scrollActivationTop: where the element starts on the entire page in px.
-        var itemTopPos = item.getBoundingClientRect().top
-        var scrollOffset = 0
-        if (item.getAttribute('data-scroll-offset')) {
-          scrollOffset = Number(item.getAttribute('data-scroll-offset')) // force it to be a number
-        }
 
-        if (item.getAttribute('page-position') === 'top') {
-          var windowOffset = 0
-        } else {
-          var windowOffset = w.innerHeight
-        }
-        if (!(item.classList.contains('js-scroll-activation--keep-active')
-              && item.classList.contains('is-active'))) {
-          var targets = document.querySelectorAll('[data-target=' + item.getAttribute('data-target') + ']')
+  // cache the goods
+  let w = window
+  let d = document;
+  let items = [...d.getElementsByClassName('js-scroll-activation')]
 
-          if (item.getAttribute('data-page-position') === 'top') {
-            if ( itemTopPos <= scrollOffset ) {
-              item.classList.add('is-active')
-              if (targets) targets.forEach(target => target.classList.add('is-active'))
-            } else {
-              item.classList.remove('is-active')
-              if (targets) targets.forEach(target => target.classList.remove('is-active'))
-            }
+  function init() {
+    if (items.length) {
+      items.forEach(item => {
+        // cache all the constant variables:
+        item.activationTargets = [...(d.querySelectorAll('[data-target=' + item.getAttribute('data-target') + ']'))]
+        item.hasViewportActivatingAtTop = item.hasAttribute('data-activate-viewport-at-top') ? true : false
+        item.isActivatingAtBottom = item.hasAttribute('data-activate-this-at-bottom') ? true : false
+        item.isKeepingActive = item.hasAttribute('data-keep-this-active') ? true : false
 
-          } else {
-            if ( currentScrollPos() > (itemTopPos - windowOffset - scrollOffset) ) {
-              item.classList.add('is-active')
-              if (targets) targets.forEach(target => target.classList.add('is-active'))
-            } else {
-              item.classList.remove('is-active')
-              if (targets) targets.forEach(target => target.classList.remove('is-active'))
-            }
+        // get the manual offset or if necessary, prepare the offsetElement
+        item.manualOffset = 0;
+        if (item.hasAttribute('data-manual-offset')) {
+          let offset = item.getAttribute('data-manual-offset');
+          if (isNaN(offset)) {
+            let offsetEl = d.querySelector(offset);
+            if (offsetEl)
+              item.offsetEl = offsetEl
+            else
+              item.manualOffset = Number(offset)
           }
+        }
+      })
+
+      // wait half a second for other page items to finish
+      w.setTimeout(() => checkScrollState(items), 500)
+
+      // add the scroll listener
+      d.addEventListener('scroll', (() => checkScrollState(items)))
+    }
+  }
+
+  // perform as few hits to the DOM as necessary
+  function changeState (direction, callee) {
+    if (callee && this.isSameNode(callee)) return
+    if (direction === 'activate') {
+      if (!this.isActive) {
+        this.classList.add('is-active')
+        this.isActive = true
+      }
+    } else {
+      if (this.isActive) {
+        this.classList.remove('is-active')
+        this.isActive = false
+      }
+    }
+    if (this.activationTargets && this.activationTargets.length) {
+      this.activationTargets.forEach(target => changeState.call(target, direction, this))
+    }
+  }
+
+  // cycles through the scroll state of items and ajusts if necessary
+  function checkScrollState (items) {
+    items.forEach((item) => {
+      // don't bother running if it's already active and keep-active is set:
+      if (!item.isKeepingActive || !item.classList.contains('is-active')) {
+
+        // get the items current top position:
+        item.currentPxFromTop = item.getBoundingClientRect().top
+
+        // get the height of the offsetEl
+        if (item.offsetEl !== 'undefined')
+          item.manualOffset = item.offsetEl.offsetHeight
+
+        if (item.isActivatingAtBottom)
+          item.offset = item.manualOffset - item.offsetHeight;
+        else
+          item.offset = item.manualOffset
+
+        // is executing at the top of the viewport:
+        if (item.hasViewportActivatingAtTop) {
+          if (item.currentPxFromTop <= item.offset )
+            changeState.call(item,'activate')
+          else
+            changeState.call(item,'deactivate')
+        }
+        // is executing at the bottom of the viewport:
+        else {
+          // take the items pixels from top, minus the height of the viewport, minus any manual Offset:
+          if (item.currentPxFromTop - item.offset < w.innerHeight)
+            changeState.call(item,'activate')
+          else
+            changeState.call(item,'deactivate')
         }
       }
     })
   }
 
-  function init() {
-    if (items.length) {
-      window.setTimeout(() => scrollActivation(items), 500)
-      document.addEventListener('scroll', ( () => scrollActivation(items)))
-    }
-  }
-
-  var w = window
-  var items = document.getElementsByClassName('js-scroll-activation')
   init(items)
 })()
