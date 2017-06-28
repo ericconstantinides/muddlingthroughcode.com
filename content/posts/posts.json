@@ -11,6 +11,18 @@
     "active": true
   },
   {
+    "title": "Express / Node.js Cheatsheet",
+    "description": "This is a cheatsheet I created for myself when learning Node / Express. Relatively simple stuff here but it helps me out.",
+    "primaryImage": {
+      "image": "/images/cheetah-kittens.jpg",
+      "containerClass": "primary-image--full",
+      "title": "Oh I see what you did there. You couldn't figure out anything witty to put there; so instead of a cheater, you put a cheetah."
+    },
+    "date": "2017-06-22",
+    "file": "express-nodejs-cheatsheet.md",
+    "active": true
+  },
+  {
     "title": "CSS Breakout",
     "description": "CSS Breakout lets you finally break out of containers gracefully. It relies on only pure CSS so it's fast and extremely portable.",
     "primaryImage": {
@@ -21,18 +33,6 @@
     "date": "2017-06-26",
     "file": "css-breakout.md",
     "css": ["css-breakout.css", "css-breakout--helper.css"],
-    "active": true
-  },
-  {
-    "title": "Express / Node.js Cheatsheet",
-    "description": "This is a cheatsheet I created for myself when learning Node / Express. Relatively simple stuff here but it helps me out.",
-    "primaryImage": {
-      "image": "/images/cheetah-kittens.jpg",
-      "containerClass": "primary-image--full",
-      "title": "Oh I see what you did there. You couldn't figure out anything witty to put there; so instead of a cheater, you put a cheetah."
-    },
-    "date": "2017-06-22",
-    "file": "express-nodejs-cheatsheet.md",
     "active": true
   },
   {
