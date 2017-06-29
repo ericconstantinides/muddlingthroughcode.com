@@ -81,8 +81,48 @@ code, pre {
   width: 28px;
   display: block;
 }
-.about__content p {
-  font-size: 0.875em;
+.about {
+  margin-top: 2em;
+  display: flex;
+}
+.about__image-container {
+  position: relative;
+  width: 200px;
+  margin: 0 auto 1em;
+  .eric {
+    border-radius: 50%;
+    opacity: 0;
+  }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: 0.5s;
+    height: auto;
+  }
+  &:hover {
+    .eric {opacity: 1}
+    .monkey {opacity: 0}
+  }
+}
+.about__content {
+  flex: 1;
+  margin-left: 1.5em;
+  p {
+    font-size: 0.875em;
+  }
+  h2 {
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: $bp-small) {
+  .about {
+    flex-flow: column;
+  }
+  .about__content {
+    margin-left: 0;
+  }
 }
 
 h1 {
