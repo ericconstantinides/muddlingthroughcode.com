@@ -98,12 +98,15 @@ code, pre {
     top: 0;
     left: 0;
     width: 100%;
-    transition: 0.5s;
+    transition: 1s;
     height: auto;
   }
-  &:hover {
+  &.is-active {
     .eric {opacity: 1}
     .monkey {opacity: 0}
+    img {
+      transition: 5s 2.5s;
+    }
   }
 }
 .about__content {
