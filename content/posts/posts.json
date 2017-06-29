@@ -45,7 +45,7 @@
     },
     "date": "2017-07-03",
     "file": "how-i-got-my-node-stack-running-on-aws.md",
-    "active": false
+    "active": true
   },
   {
     "title": "Optimizing Images",
@@ -53,8 +53,8 @@
     "primaryImage": {
       "image": "/images/hammer.gif"
     },
-    "date": "2017-07-03",
+    "date": "2017-07-10",
     "file": "optimizing-images.md",
-    "active": false
+    "active": true
   }
 ]

@@ -6,6 +6,17 @@ const slug = require('slug')
 const Feed = require('feed')
 var router = express.Router()
 
+const WEBSITE = {
+  url: 'https://www.muddlingthroughcode.com',
+  name: '{ muddling through code }',
+  description: 'Welcome to { muddling through code }. This is my journey to '
+    + 'learn, grow, and /* occasionally */ muddle through code.',
+  tagline: 'To learn, sometimes you gotta muddle'
+}
+const EMAIL = 'eric@ericconstantinides.com'
+const OWNER = 'Eric Constantinides'
+const OWNER_WEBSITE = 'https://www.ericconstantinides.com'
+
 function teaserBreak (string, addOn) {
   let teaser = string.substr(0, string.indexOf('[//]:#((teaserBreak))'))
   if (teaser === '') return string
@@ -28,31 +39,37 @@ function prettyDate (dateString) {
 
 // prepare RSS
 let feed = new Feed({
-  title: '{ muddling through code }',
-  description: 'Welcome to {muddling through code}. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
-  id: 'https://www.muddlingthroughcode.com/',
-  link: 'https://www.muddlingthroughcode.com/',
-  image: 'https://www.muddlingthroughcode.com/images/see-no-evil-monkey-emoji--large.png',
-  favicon: 'https://www.muddlingthroughcode.com/favicon.ico',
-  copyright: 'All rights reserved, Eric Constantinides',
-  // updated: new Date(2013, 06, 14), // optional, default = today
+  title: WEBSITE.name,
+  description: WEBSITE.description,
+  id: WEBSITE.url,
+  link: WEBSITE.url,
+  image: WEBSITE.url + '/images/see-no-evil-monkey-emoji--large.png',
+  favicon: WEBSITE.url + '/favicon.ico',
+  copyright: '© ' + new Date().getFullYear() + ' ' + OWNER,
+  // updated: new Date(2013,06,14), // optional, default = today
   // generator: 'awesome', // optional, default = 'Feed for Node.js'
   feedLinks: {
-    json: 'https://www.muddlingthroughcode.com/json',
-    atom: 'https://www.muddlingthroughcode.com/atom',
+    rss:  WEBSITE.url + '/rss',
+    json: WEBSITE.url + '/json',
+    atom: WEBSITE.url + '/atom',
   },
   author: {
-    name: 'Eric Constantinides',
-    email: 'eric@ericconstantinides.com',
-    link: 'https://www.ericconstantinides.com'
+    name: OWNER,
+    email: EMAIL,
+    link: OWNER_WEBSITE.url
   }
 })
 
 feed.addCategory('Node.js')
-feed.addCategory('JavaScript')
+feed.addCategory('Node.js')
+feed.addCategory('Express')
 
 let about
-let posts = require('../content/posts/posts.json').reverse()
+// get posts, filter inactive, and sort by reversed date
+let posts = require('../content/posts/posts.json')
+  .filter(postObj => postObj.active)
+  .filter(postObj => new Date(cleanDate(postObj.date)) <= new Date())
+  .sort((a,b) => new Date(cleanDate(b.date)) - new Date(cleanDate(a.date)))
 fs.readFile('./content/about.md','utf8', (err, aboutContent) => {
   if (err) throw err
   about = marked(aboutContent)
@@ -60,11 +77,6 @@ fs.readFile('./content/about.md','utf8', (err, aboutContent) => {
 
 // pull the content out of the files:
 posts.forEach((postObj,index) => {
-  // don't run this code if it's not active:
-  if (!postObj.active) {
-    posts.splice(index,1)
-    return
-  }
   postObj.slug = slug(postObj.title).toLowerCase()
   fs.readFile(`./content/posts/${postObj.file}`, 'utf8', (err, postText) => {
     if (err) throw err
@@ -78,32 +90,29 @@ posts.forEach((postObj,index) => {
     } else {
       postObj.primaryImage = false;
     }
-
     // add this post into the feed:
     feed.addItem({
       title: postObj.title,
-      id: 'https://www.muddlingthroughcode.com/' + postObj.slug,
-      link: 'https://www.muddlingthroughcode.com/' + postObj.slug,
+      id: WEBSITE.url + '/' + postObj.slug,
+      link: WEBSITE.url + '/' + postObj.slug,
       description: postObj.description,
       content: postObj.content,
       author: [{
-        name: 'Eric Constantinides',
-        email: 'eric@ericconstantinides.com',
-        link: 'https://www.ericconstantinides.com'
+        name: OWNER,
+        email: EMAIL,
+        link: OWNER_WEBSITE.url
       }],
-      date: new Date(cleanDate(postObj.date))
-      // image: post.image
+      date: new Date(cleanDate(postObj.date)),
+      image: (postObj.primaryImage ? WEBSITE.url + postObj.primaryImage.image : '')
     })
   })
 
 
   router.get(`/posts/${postObj.slug}`, function(req, res, next) {
-    let protocol = req.secure ? 'https://' : 'http://'
     res.render('post', {
-      title: `${postObj.title} { muddling through code }`,
+      title: postObj.title + ' ' + WEBSITE.name,
       ogTitle: `${postObj.title}`,
       post: postObj,
-      hostname: protocol + req.headers.host,
       pageUrl: `/posts/${postObj.slug}`,
       className: 'post-page',
       description: postObj.description,
@@ -113,28 +122,26 @@ posts.forEach((postObj,index) => {
 })
 
 router.get('/', function(req, res, next) {
-  let protocol = req.secure ? 'https://' : 'http://'
-  posts.forEach((postObj,index) => {
-    if (!postObj.active) {
-      posts.splice(index,1)
-      return
-    }
-  })
   res.render('index', {
-    title: '{ muddling through code } To learn, sometimes you gotta muddle',
-    ogTitle: '{ muddling through code }',
+    title: WEBSITE.name + ' ' + WEBSITE.tagline,
+    ogTitle: WEBSITE.name,
     posts: posts,
-    hostname: protocol + req.headers.host,
     pageUrl: `/`,
     primaryImage: false,
     className: 'post-index',
-    description: 'Welcome to { muddling through code }. This is my journey to learn, grow, and /* occasionally */ muddle through code.',
+    description: WEBSITE.description,
     about: about
   })
 })
 
 router.get('/rss', function(req, res, next) {
   res.send(feed.rss2())
+})
+router.get('/json', function(req, res, next) {
+  res.send(feed.json1())
+})
+router.get('/atom', function(req, res, next) {
+  res.send(feed.atom1())
 })
 
 module.exports = router
