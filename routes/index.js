@@ -3,7 +3,7 @@ var express = require('express')
 const fs = require('fs')
 const slug = require('slug')
 const Feed = require('feed')
-const sitemapGenerator = require('sitemap')
+// const sitemapGenerator = require('sitemap')
 var router = express.Router()
 
 const WEBSITE = {
@@ -38,11 +38,11 @@ function prettyDate (dateString) {
   return `${weekdayNames[dateObj.getDay()]}, ${monthNames[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
 }
 
-let sitemap = sitemapGenerator.createSitemap({
-  hostname: WEBSITE.url,
-  cacheTime: 600000,  // 600 sec cache period
-  urls: [{url: '/', changefreq: 'weekly', priority: 1.0}]
-})
+// let sitemap = sitemapGenerator.createSitemap({
+//   hostname: WEBSITE.url,
+//   cacheTime: 600000,  // 600 sec cache period
+//   urls: [{url: '/', changefreq: 'weekly', priority: 1.0}]
+// })
 
 // prepare RSS
 let feed = new Feed({
@@ -113,7 +113,7 @@ posts.forEach((postObj, index) => {
       image: (postObj.primaryImage ? WEBSITE.url + postObj.primaryImage.image : '')
     })
     // add to the sitemap
-    sitemap.add({url: '/posts/' + postObj.slug, changefreq: 'weekly', priority: 0.5})
+    // sitemap.add({url: '/posts/' + postObj.slug, changefreq: 'weekly', priority: 0.5})
   })
 
   router.get(`/posts/${postObj.slug}`, (req, res, next) => {
@@ -152,9 +152,9 @@ router.get('/atom', (req, res, next) => {
   res.send(feed.atom1())
 })
 
-router.get('/sitemap.xml', (req, res, next) => {
-  res.header('Content-Type', 'application/xml')
-  res.send(sitemap.toString())
-})
+// router.get('/sitemap.xml', (req, res, next) => {
+//   res.header('Content-Type', 'application/xml')
+//   res.send(sitemap.toString())
+// })
 
 module.exports = router
