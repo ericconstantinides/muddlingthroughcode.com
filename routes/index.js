@@ -16,13 +16,6 @@ const EMAIL = 'eric@ericconstantinides.com'
 const OWNER = 'Eric Constantinides'
 const OWNER_WEBSITE = 'https://www.ericconstantinides.com'
 
-function getSiteMapDate (dateObj) {
-  let day = ('0' + dateObj.getDate()).slice(-2)
-  let month = ('0' + (dateObj.getMonth() + 1)).slice(-2)
-  let year = dateObj.getFullYear()
-  return `${year}-${month}-${day}`
-}
-
 function teaserBreak (string, addOn) {
   let teaser = string.substr(0, string.indexOf('[//]:#((teaserBreak))'))
   if (teaser === '') return string
@@ -121,11 +114,11 @@ posts.forEach((postObj, index) => {
     })
     // Assign the first date to the last modified
     if (typeof siteMap[0].lastmod === 'undefined') {
-      siteMap[0].lastmod = getSiteMapDate(new Date(cleanDate(postObj.date)))
+      siteMap[0].lastmod = new Date(cleanDate(postObj.date)).toISOString().substr(0, 10)
     }
     siteMap.push({
       loc: WEBSITE.url + '/posts/' + postObj.slug,
-      lastmod: getSiteMapDate(new Date(cleanDate(postObj.date))),
+      lastmod: new Date(cleanDate(postObj.date)).toISOString().substr(0, 10),
       changefreq: 'weekly',
       priority: 0.5
     })
