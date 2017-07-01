@@ -43,10 +43,6 @@ let sitemap = sitemapGenerator.createSitemap({
   cacheTime: 600000,  // 600 sec cache period
   urls: [{url: '/', changefreq: 'weekly', priority: 1.0}]
 })
-router.get('/sitemap.xml', (req, res, next) => {
-  res.header('Content-Type', 'application/xml')
-  res.send(sitemap.toString())
-})
 
 // prepare RSS
 let feed = new Feed({
@@ -154,6 +150,11 @@ router.get('/json', (req, res, next) => {
 })
 router.get('/atom', (req, res, next) => {
   res.send(feed.atom1())
+})
+
+router.get('/sitemap.xml', (req, res, next) => {
+  res.header('Content-Type', 'application/xml')
+  res.send(sitemap.toString())
 })
 
 module.exports = router
