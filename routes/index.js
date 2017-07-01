@@ -1,11 +1,9 @@
-var marked = require('marked')
-var express = require('express')
+const marked = require('marked')
+const express = require('express')
 const fs = require('fs')
 const slug = require('slug')
 const Feed = require('feed')
-// const sitemapGenerator = require('sitemap')
-var router = express.Router()
-let siteMap = []
+const router = express.Router()
 
 const WEBSITE = {
   url: 'https://www.muddlingthroughcode.com',
@@ -83,6 +81,7 @@ fs.readFile('./content/about.md', 'utf8', (err, aboutContent) => {
   about = marked(aboutContent)
 })
 
+let siteMap = []
 siteMap.push({
   loc: WEBSITE.url,
   changefreq: 'weekly',
@@ -120,8 +119,6 @@ posts.forEach((postObj, index) => {
       date: new Date(cleanDate(postObj.date)),
       image: (postObj.primaryImage ? WEBSITE.url + postObj.primaryImage.image : '')
     })
-    // add to the sitemap
-    // sitemap.add({url: '/posts/' + postObj.slug, changefreq: 'weekly', priority: 0.5})
     // Assign the first date to the last modified
     if (typeof siteMap[0].lastmod === 'undefined') {
       siteMap[0].lastmod = getSiteMapDate(new Date(cleanDate(postObj.date)))
@@ -170,12 +167,8 @@ router.get('/atom', (req, res, next) => {
   res.send(feed.atom1())
 })
 
-// router.get('/sitemap.xml', (req, res, next) => {
-//   res.header('Content-Type', 'application/xml')
-//   res.send(sitemap.toString())
-// })
 router.get('/sitemap.xml', (req, res, next) => {
-  // res.header('Content-Type', 'application/xml')
+  res.set('Content-Type', 'application/xml')
   res.render('sitemap', {
     siteMap: siteMap
   })
