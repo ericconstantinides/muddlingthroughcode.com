@@ -5,6 +5,7 @@ const slug = require('slug')
 const Feed = require('feed')
 // const sitemapGenerator = require('sitemap')
 var router = express.Router()
+let siteMap = []
 
 const WEBSITE = {
   url: 'https://www.muddlingthroughcode.com',
@@ -16,6 +17,13 @@ const WEBSITE = {
 const EMAIL = 'eric@ericconstantinides.com'
 const OWNER = 'Eric Constantinides'
 const OWNER_WEBSITE = 'https://www.ericconstantinides.com'
+
+function getSiteMapDate (dateObj) {
+  let day = ('0' + dateObj.getDate()).slice(-2)
+  let month = ('0' + (dateObj.getMonth() + 1)).slice(-2)
+  let year = dateObj.getFullYear()
+  return `${year}-${month}-${day}`
+}
 
 function teaserBreak (string, addOn) {
   let teaser = string.substr(0, string.indexOf('[//]:#((teaserBreak))'))
@@ -37,12 +45,6 @@ function prettyDate (dateString) {
     'Friday', 'Saturday', 'Sunday']
   return `${weekdayNames[dateObj.getDay()]}, ${monthNames[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
 }
-
-// let sitemap = sitemapGenerator.createSitemap({
-//   hostname: WEBSITE.url,
-//   cacheTime: 600000,  // 600 sec cache period
-//   urls: [{url: '/', changefreq: 'weekly', priority: 1.0}]
-// })
 
 // prepare RSS
 let feed = new Feed({
@@ -81,6 +83,12 @@ fs.readFile('./content/about.md', 'utf8', (err, aboutContent) => {
   about = marked(aboutContent)
 })
 
+siteMap.push({
+  loc: WEBSITE.url,
+  changefreq: 'weekly',
+  priority: 0.5
+})
+
 // pull the content out of the files:
 posts.forEach((postObj, index) => {
   postObj.slug = slug(postObj.title).toLowerCase()
@@ -114,6 +122,16 @@ posts.forEach((postObj, index) => {
     })
     // add to the sitemap
     // sitemap.add({url: '/posts/' + postObj.slug, changefreq: 'weekly', priority: 0.5})
+    // Assign the first date to the last modified
+    if (typeof siteMap[0].lastmod === 'undefined') {
+      siteMap[0].lastmod = getSiteMapDate(new Date(cleanDate(postObj.date)))
+    }
+    siteMap.push({
+      loc: WEBSITE.url + '/posts/' + postObj.slug,
+      lastmod: getSiteMapDate(new Date(cleanDate(postObj.date))),
+      changefreq: 'weekly',
+      priority: 0.5
+    })
   })
 
   router.get(`/posts/${postObj.slug}`, (req, res, next) => {
@@ -156,5 +174,11 @@ router.get('/atom', (req, res, next) => {
 //   res.header('Content-Type', 'application/xml')
 //   res.send(sitemap.toString())
 // })
+router.get('/sitemap.xml', (req, res, next) => {
+  // res.header('Content-Type', 'application/xml')
+  res.render('sitemap', {
+    siteMap: siteMap
+  })
+})
 
 module.exports = router

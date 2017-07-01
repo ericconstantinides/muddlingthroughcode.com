@@ -19,7 +19,6 @@
     "feed": "^1.1.0",
     "marked": "^0.3.6",
     "morgan": "^1.8.1",
-    "sitemap": "^1.13.0",
     "slug": "^0.9.1"
   },
   "devDependencies": {
