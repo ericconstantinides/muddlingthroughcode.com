@@ -9,7 +9,7 @@
       <div class="about__image-container m-ratio m-ratio--1-1 js-scroll-activation" data-activate-this-at-bottom>
         <div class="m-ratio__child">
           <img class="eric" src="/images/eric-constantinides.jpg">
-          <img class="monkey" src="/images/see-no-evil-monkey-emoji--large.png">
+          <img class="monkey" src="<%- siteMeta.website.primaryImage.path %>">
         </div>
       </div>
       <div class="about__content">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <p class="site-footer__copyright">
-      &copy; <%- new Date().getFullYear() %> <a href="//www.ericconstantinides.com">Eric Constantinides</a>
+      &copy; <%- new Date().getFullYear() %> <a href="<%- siteMeta.owner.url%>"><%- siteMeta.owner.name%></a>
     </p>
   </div>
 </footer>
