@@ -36,6 +36,16 @@
     "active": true
   },
   {
+    "title": "Optimizing Images",
+    "description": "How I optimize PNGs",
+    "primaryImage": {
+      "image": "/images/hammer.gif"
+    },
+    "file": "optimizing-images.md",
+    "date": "2017-07-03",
+    "active": true
+  },
+  {
     "title": "How I got Node.js up and running on the AWS EC2",
     "description": "This post is a collection of notes that I took moving over from Heroku to AWS.",
     "primaryImage": {
@@ -43,18 +53,8 @@
       "containerClass": "primary-image--full",
       "title": "Remember when Amazon actually referred to a rainforest?"
     },
-    "date": "2017-07-03",
-    "file": "how-i-got-my-node-stack-running-on-aws.md",
-    "active": true
-  },
-  {
-    "title": "Optimizing Images",
-    "description": "How I optimize PNGs",
-    "primaryImage": {
-      "image": "/images/hammer.gif"
-    },
     "date": "2017-07-10",
-    "file": "optimizing-images.md",
+    "file": "how-i-got-my-node-stack-running-on-aws.md",
     "active": true
   }
 ]

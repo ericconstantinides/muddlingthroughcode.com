@@ -3,11 +3,18 @@ const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const marked = require('marked')
+const fs = require('fs')
 
 const app = express()
 
-const siteMeta = require('./content/siteMeta.config.js')
-const index = require('./routes/index')(siteMeta)
+const siteMeta = require('./content/site-meta.config.js')
+const index = require('./routes/index')
+
+fs.readFile('./content/about.md', 'utf8', (err, aboutContent) => {
+  if (err) throw err
+  app.locals.about = marked(aboutContent)
+})
 
 // add the siteMeta to the app.locals variable:
 app.locals.siteMeta = siteMeta

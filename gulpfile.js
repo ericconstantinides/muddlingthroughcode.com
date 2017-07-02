@@ -3,13 +3,15 @@
  *
  * default theme in this format:
  *
- * ──THEME_NAME
- *      │
- *      ├────src
- *      │     │
- *      │     ├─js
- *      ├─js  └─sass
- *      └─css
+ * ─DOCROOT
+ *     │
+ *     ├─src
+ *     │  ├─js
+ *     │  └─sass
+ *     │
+ *     └─public
+ *        ├─js
+ *        └─css
  */
 
 // requires:
