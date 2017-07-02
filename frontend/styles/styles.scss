@@ -21,6 +21,14 @@ code, pre {
   @include responsive(font-size, 0.85rem, 0.6rem, 500);
 }
 
+body {
+  display: flex;
+  flex-flow: column;
+}
+main {
+  flex: 1;
+}
+
 .site-header,
 .site-footer {
   background: whitesmoke;
@@ -343,6 +351,19 @@ body.post-index {
   font-weight: bold;
   font-size: 0.875em;
   text-transform: uppercase;
+}
+
+.page-404 {
+  .about {
+    display: none;
+  }
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 400px;
+  }
 }
 
 //—————————————————————————————————————————————————————————————————————
