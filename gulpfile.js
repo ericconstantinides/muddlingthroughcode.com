@@ -23,6 +23,7 @@ const plumber = require('gulp-plumber')
 const notify = require('gulp-notify')
 const sourcemaps = require('gulp-sourcemaps')
 const livereload = require('gulp-livereload')
+const nodemon = require('gulp-nodemon')
 // const path = require('path')
 // const folders = require('gulp-folders')
 const babel = require('gulp-babel')
@@ -33,11 +34,12 @@ const newer = require('gulp-newer')
 // const concat           = require('gulp-concat')
 
 const config = {
-  sourceDir: 'src',
-  jsSource: 'js',
-  cssSource: 'sass',
-  jsDestination: 'public/js',
-  cssDestination: 'public/css'
+  jsSource: './src/js',
+  jsDestination: './public/js',
+  cssSource: './src/sass',
+  cssDestination: './public/css',
+  views: './views',
+  app: './bin/www'
 }
 
 const parseError = () => {
@@ -83,8 +85,8 @@ const onError = (err) => {
 
 // Uglifies / minifies JS
 gulp.task('scripts', () => {
-  let source = `./${config.sourceDir}/${config.jsSource}/*.js*`
-  let destination = `./${config.jsDestination}`
+  let source = `${config.jsSource}/*.js*`
+  let destination = config.jsDestination
   gulp.src(source)
     .pipe(newer(destination))
     .pipe(sourcemaps.init())
@@ -96,7 +98,7 @@ gulp.task('scripts', () => {
     // .pipe(concat(folder + '.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write('./', {
-      sourceRoot: './' + config.sourceDir + '/' + config.jsSource,  //
+      sourceRoot: config.jsSource,  //
       includeContent: true     // default is true, which includes the entire css in the sourcemap
     }))
     .pipe(gulp.dest(destination))
@@ -104,7 +106,7 @@ gulp.task('scripts', () => {
 
 // Styles Task
 gulp.task('styles', () => {
-  gulp.src('./' + config.sourceDir + '/' + config.cssSource + '/' + '*.scss')
+  gulp.src(`${config.cssSource}/*.scss`)
     .pipe(sourcemaps.init())
       .pipe(sass({
         errLogToConsole: true,
@@ -117,25 +119,37 @@ gulp.task('styles', () => {
       cascade: false
     }))
     .pipe(sourcemaps.write('./', {
-      sourceRoot: config.sourceDir + '/' + config.cssSource,  //
+      sourceRoot: config.cssSource,  //
       includeContent: false     // default is true, which includes the entire css in the sourcemap
     }))
     // commented out below because it wasn't recognizing new files
     // .pipe(cached('sass_compile')) // so it only recompiles the file which changed
-    .pipe(gulp.dest('./' + config.cssDestination))
+    .pipe(gulp.dest(config.cssDestination))
+})
+
+gulp.task('ejs', () => {
+  return gulp.src(`${config.views}/**/*.ejs`)
+    .pipe(livereload())
+});
+
+gulp.task('server', () => {
+  nodemon({
+    'script': config.app,
+    'ignore': `${config.jsDestination}/*.js`
+  })
 })
 
 gulp.task('watch', () => {
-  gulp.watch('./' + config.sourceDir + '/' + config.jsSource + '/**/*.js', ['scripts'])
-  gulp.watch('./' + config.sourceDir + '/' + config.jsSource + '/**/*.jsx', ['scripts'])
-  gulp.watch('./' + config.sourceDir + '/' + config.cssSource + '/**/*.scss', ['styles'])
   livereload.listen() // start the livereload server
+  gulp.watch(`${config.jsSource}/**/*.js`, ['scripts'])
+  gulp.watch(`${config.jsSource}/**/*.jsx`, ['scripts'])
+  gulp.watch(`${config.cssSource}/**/*.scss`, ['styles'])
+  gulp.watch(`${config.views}/**/*.ejs`, ['ejs'])
   gulp.watch([
-    './' + '**/*.html',
-    './' + config.cssDestination + '/*.css',
-    './' + config.jsDestination + '/*.js'
+    './**/*.md',
+    `${config.cssDestination}/*.css`,
+    `${config.jsDestination}/*.js`
   ], event => livereload.changed(event.path)) // run livereload on the file
 })
 
-// gulp.task('default', ['scripts', 'styles'])
-gulp.task('default', ['scripts', 'styles', 'watch'])
+gulp.task('default', ['scripts', 'styles', 'server', 'watch'])
