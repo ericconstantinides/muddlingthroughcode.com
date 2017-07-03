@@ -1,7 +1,7 @@
 const config = {
   root: {
-    dev: './dev',
-    dist: './dist'
+    dev: './src',
+    dist: './public'
   },
   html: {
     dev: 'html',
@@ -10,14 +10,14 @@ const config = {
   },
   css: {
     dev: 'sass',
-    dist: 'assets/css',
+    dist: 'css',
     parts: 'parts',
     extensions: '*.+(css|scss)',
     uncss: false
   },
   js: {
     dev: 'js',
-    dist: 'assets/js',
+    dist: 'js',
     parts: 'modules',
     'extensions': ['.json', '.js']
   },
