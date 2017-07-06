@@ -1,3 +1,5 @@
+# How I got Node.js up and running on the AWS EC2
+
 This post is a collection of notes that I took moving over from Heroku to AWS. I was with Heroku for a few weeks and wanted to add this site to it. However, on getting it all set up, I soon found out that my $7/month was only good for one app. Every single other app I wanted to spin up without sleeping would be an extra $7. Meh, no thanks.
 
 I knew I had gotten a free tier of AWS so I figured now was a good a time as any.

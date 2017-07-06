@@ -1,3 +1,5 @@
+# Why I'm leaving the LAMP stack and embracing the MERN stack
+
 >"Hi my name is Eric and I build websites."
 
 I've said that to people for years. From the time I started web development I've been a LAMP (Linux, Apache, MySQL, PHP) stack developer. I've built well over [20 enterprise-level](https://www.ericconstantinides.com/) [Drupal](https://www.drupal.org/) and [Wordpress](https://wordpress.org/) sites in addition to coding [hundreds of thousands of lines of custom CSS and UI JavaScript](https://www.ericconstantinides.com/snippets). My entire professional life has been a back and forth between the front-end and the LAMP stack - getting pretty good at both but never mastering either. As the years have gone by I've gravitated towards the front-end but I've always maintained that I'm a true full LAMP stack developer - while never really mastering either the front-end or the back-end.

@@ -1,3 +1,5 @@
+# Optimizing Images
+
 For years I've been annoyed at websites having big beautiful PNGs taking monumental amount of time to load. Over the years, I've created this method to vastly cut down the size of PNGs while both retaining quality _and_ maintaining alpha transparency.
 
 These instructions show how to optimize PNGs for display on the web.

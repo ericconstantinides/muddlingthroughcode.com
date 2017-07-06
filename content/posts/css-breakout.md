@@ -1,3 +1,5 @@
+# CSS Breakout
+
 CSS Breakout appears to be very simple. It "breaks" out of a normal container to either a skinny container, site container, or to the maximum browser boundaries. No closing and then reopening of a div tree is necessary. Absolutely no special HTML structure is required. And it's all done in pure CSS - no javascript is used whatsoever.
 
 <img class="breakout--to-site" src="/images/css-breakout.gif">
