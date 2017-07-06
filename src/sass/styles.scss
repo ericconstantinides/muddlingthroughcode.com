@@ -164,7 +164,7 @@ pre {
   overflow: scroll;
 }
 code {
-  padding: 0.25em 0.5em;
+  padding: 0.2em 0.4em;
 }
 pre > code {
   // font-size: initial;
@@ -270,6 +270,8 @@ body.post-index {
   img {
     max-width: $site-width;
     width: 100%;
+    transition: opacity 0.35s;
+    transform: translateZ(0);
   }
 }
 .post__primary-image-container.primary-image--stretch {
