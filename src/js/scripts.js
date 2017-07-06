@@ -26,6 +26,9 @@
  *      Either:
  *       option 1. Offset by a NUMBER of pixels. Do not include "px".
  *       option 2. Offset by an element (like a header) using a QUERY-SELECTOR
+ *    [data-scroll-over="QUERY-SELECTOR"]
+ *      Will gradually fade the opacity of the "scroll-over" element once the
+ *      primary element is within the scroll-over's top and bottom
  *
  * Creates
  *   .is-active
@@ -56,6 +59,10 @@
             let offsetEl = d.querySelector(offset)
             if (offsetEl) { item.offsetEl = offsetEl } else { item.manualOffset = Number(offset) }
           }
+        }
+        if (item.hasAttribute('data-scroll-over')) {
+          let scrollOverItem = d.querySelector(item.getAttribute('data-scroll-over'))
+          if (scrollOverItem) item.scrollOverItem = scrollOverItem
         }
       })
 
@@ -111,7 +118,31 @@
           }
         } else { // is executing at the bottom of the viewport:
           // take the items pixels from top, minus the height of the viewport, minus any manual Offset:
-          if (item.currentPxFromTop - item.offset < w.innerHeight) { changeState.call(item, 'activate') } else { changeState.call(item, 'deactivate') }
+          if (item.currentPxFromTop - item.offset < w.innerHeight) {
+            changeState.call(item, 'activate')
+          } else {
+            changeState.call(item, 'deactivate')
+          }
+        }
+
+        if (item.scrollOverItem) {
+          item.scrollOverItem.currentPxFromTop =
+            item.scrollOverItem.getBoundingClientRect().top
+          item.scrollOverItem.currentPxFromBottom =
+            item.scrollOverItem.currentPxFromTop + item.scrollOverItem.offsetHeight
+          // the decimal values are to not start or finish unless we're in the zone a little bit extra
+          if (item.currentPxFromTop < item.scrollOverItem.currentPxFromBottom - item.scrollOverItem.offsetHeight * 0.1 &&
+            item.currentPxFromTop > item.scrollOverItem.currentPxFromTop) {
+            // we're in the middle zone, so we have to figure out how far we are
+            // so we could either do it from the bottom or the top
+            let diffFromTop = item.currentPxFromTop - item.scrollOverItem.currentPxFromTop -
+              item.scrollOverItem.offsetHeight * 0.15
+            let ratioFromTop = diffFromTop / (item.scrollOverItem.offsetHeight - item.scrollOverItem.offsetHeight * 0.15)
+            item.scrollOverItem.style.opacity = ratioFromTop
+            // so now we have ratioFromTop
+          } else {
+            item.scrollOverItem.style.opacity = 1
+          }
         }
       }
     })
