@@ -69,7 +69,7 @@ let parseError = (errorObj) => {
 
 // this is the error shown using plumber and notify:
 const onError = (errorObj) => {
-  parsedErrorObj = parseError(errorObj)
+  let parsedErrorObj = parseError(errorObj)
   notify.onError({
     // title:    "Gulp Error",
     // message:  "<%= error.message %>",
@@ -131,7 +131,7 @@ gulp.task('styles', () => {
 gulp.task('ejs', () => {
   return gulp.src(`${config.views}/**/*.ejs`)
     .pipe(livereload())
-});
+})
 
 gulp.task('server', () => {
   nodemon({
