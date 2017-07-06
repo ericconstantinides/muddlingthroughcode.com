@@ -42,45 +42,46 @@ const config = {
   app: './bin/www'
 }
 
-const parseError = () => {
-  if (this.plugin === 'gulp-sass') {
-    this.fileParsed = this.relativePath.split('/').pop()
-    this.messageParsed = this.messageOriginal
-    this.lineParsed = this.line
-    this.columnParsed = this.column
+let parseError = (errorObj) => {
+  if (errorObj.plugin === 'gulp-sass') {
+    // console.log('here I am you great')
+    errorObj.fileParsed = errorObj.relativePath.split('/').pop()
+    errorObj.messageParsed = errorObj.messageOriginal
+    errorObj.lineParsed = errorObj.line
+    errorObj.columnParsed = errorObj.column
 
-    this.errorParsed = this.messageFormatted
-  } else if (this.plugin === 'gulp-babel') {
+    errorObj.errorParsed = errorObj.messageFormatted
+  } else if (errorObj.plugin === 'gulp-babel') {
     // get the filename out of the message:
-    this.messageParsed = this.message.replace(new RegExp(this.fileName + ': ', 'i'), '')
-    this.messageParsed = this.messageParsed.replace(/.\((\d*:\d*)\)$/gi, '')
+    errorObj.messageParsed = errorObj.message.replace(new RegExp(errorObj.fileName + ': ', 'i'), '')
+    errorObj.messageParsed = errorObj.messageParsed.replace(/.\((\d*:\d*)\)$/gi, '')
 
     // get the last item:
-    this.fileParsed = this.fileName.split('/').pop()
+    errorObj.fileParsed = errorObj.fileName.split('/').pop()
 
-    this.lineParsed = this.loc.line
-    this.columnParsed = this.loc.column
+    errorObj.lineParsed = errorObj.loc.line
+    errorObj.columnParsed = errorObj.loc.column
 
-    this.errorParsed = this.codeFrame
+    errorObj.errorParsed = errorObj.codeFrame
   }
-  return this
+  return errorObj
 }
 
 // this is the error shown using plumber and notify:
-const onError = (err) => {
-  err = parseError.call(err)
+const onError = (errorObj) => {
+  parsedErrorObj = parseError(errorObj)
   notify.onError({
     // title:    "Gulp Error",
     // message:  "<%= error.message %>",
     title: '<%= error.fileParsed %> error => line:<%= error.lineParsed %>, col:<%= error.columnParsed %>',
     message: '<%= error.messageParsed %>'
 
-  })(err)
+  })(parsedErrorObj)
 
   // this is a good one for the terminal:
-  console.log('\n' + err.errorParsed + '\n')
+  console.log('\n' + parsedErrorObj.errorParsed + '\n')
 
-  this.emit('end')
+  // errorObj.emit('end')
 }
 
 // Uglifies / minifies JS
@@ -153,3 +154,4 @@ gulp.task('watch', () => {
 })
 
 gulp.task('default', ['scripts', 'styles', 'server', 'watch'])
+// gulp.task('default', ['scripts', 'styles', 'watch'])
