@@ -24,10 +24,11 @@ const notify = require('gulp-notify')
 const sourcemaps = require('gulp-sourcemaps')
 const livereload = require('gulp-livereload')
 const nodemon = require('gulp-nodemon')
-// const path = require('path')
+const path = require('path')
 // const folders = require('gulp-folders')
 const babel = require('gulp-babel')
 const newer = require('gulp-newer')
+const webpack = require('webpack-stream');
 // const cached           = require('gulp-cached')
 // const newer_sass       = require('gulp-newer-sass')
 
@@ -39,7 +40,8 @@ const config = {
   cssSource: './src/sass',
   cssDestination: './public/css',
   views: './views',
-  app: './bin/www'
+  app: './bin/www',
+  jsApp: './src/app.js'
 }
 
 const parseError = () => {
@@ -139,6 +141,36 @@ gulp.task('server', () => {
   })
 })
 
+gulp.task('webpack', () => {
+  return gulp.src(config.jsApp)
+    // .pipe(webpack( require('./webpack.config.js') ))
+    .pipe(webpack({
+      watch: true,
+      entry: { app: './src/app.js'},
+      output: {
+        path: path.resolve(__dirname, 'public/js'),
+        filename: '[name].bundle.js'
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /(node_modules)/,
+            loader: 'babel-loader',
+            use: { // was "use"
+              presets: [
+                'react',
+                'es2015',
+                'stage-0'
+              ],
+            }
+          }
+        ]
+      },
+    }))
+    .pipe(gulp.dest(config.jsDestination));
+})
+
 gulp.task('watch', () => {
   livereload.listen() // start the livereload server
   gulp.watch(`${config.jsSource}/**/*.js`, ['scripts'])
@@ -152,4 +184,4 @@ gulp.task('watch', () => {
   ], event => livereload.changed(event.path)) // run livereload on the file
 })
 
-gulp.task('default', ['scripts', 'styles', 'server', 'watch'])
+gulp.task('default', [/*'scripts',*/ 'styles', 'server', 'watch', 'webpack'])
