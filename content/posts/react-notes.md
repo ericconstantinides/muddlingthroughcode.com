@@ -1,11 +1,23 @@
-# My React Notes
+# New React Notes
+In teaching myself React, these are my cheatsheet notes that I've taken. They are in no way complete, but they have helped me get off the ground using React.
 
 ## Components
 There are 2 types of React components:
-* `functional` or `Stateless function` - Doesn't contain state. Start with this until you need something more
-* `component` - uses ES6 class structure; primary type which can contain state
+* **Functional Component** or **Stateless function** - Doesn't contain state. Start with this until you need something more
+* **Class Component** - uses ES6 class structure; primary type which can contain state
 
-### Component
+### Functional Component
+```
+const MyComponent = () => {
+  return (
+    <div>
+      [...JSX stuff...]
+    </div>
+  )
+}
+```
+
+### Class Component
 ```
 import React, { Component } from 'react'
 class MyComponent extends Component {
@@ -23,19 +35,8 @@ class MyComponent extends Component {
 }
 ```
 * `{ Component }` is a fancy ES6 way to pull out React.Component
-* `state` must be initialized before using
+* if using `state`, it must be initialized in `constructor()`
 * JSX must be wrapped in an element (in this case, `<div>`)
-
-### Functional Component
-```
-const MyComponent = () => {
-  return (
-    <div>
-      [...JSX stuff...]
-    </div>
-  )
-}
-```
 
 ### Component w/ Event Handler
 ```
@@ -51,11 +52,11 @@ class SearchBar extends Component {
 }
 ```
 * _curly braces_ `{}` are used to compile the `JSX` as `JS`
-* Don't use quotes around curly braces
+* Don't use quotes around curly braces 
 * the `onChange` event handler is also a `prop`
 * we use `this.onInputChange`  so it knows that its a function inside our class
 
-[//]:#((teaserBreak))
+[]:#((teaserBreak))
 
 ## State
 State is a plain javascript object that is used to _record_ and _react_ to javascript events.
@@ -172,7 +173,6 @@ const myInnerComponent = (props) => {
 const myInnerComponent = ({thisCompData, myClickFn}) => {
   // do stuff //
 ```
-
 
 
 ## Patterns for Event Handling
