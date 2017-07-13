@@ -10,7 +10,7 @@ These instructions show how to optimize PNGs for display on the web.
  * **ImageAlpha:** <https://pngmini.com/>
  * **ImageOptim:** <https://imageoptim.com/mac>
 
-[//]:#((teaserBreak))
+{{teaserbreak}}
 
 ## Instructions
 1. In **PhotoShop** or other image editing software, load the image you'd' to optimize.

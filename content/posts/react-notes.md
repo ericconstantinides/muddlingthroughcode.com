@@ -56,7 +56,7 @@ class SearchBar extends Component {
 * the `onChange` event handler is also a `prop`
 * we use `this.onInputChange`  so it knows that its a function inside our class
 
-[]:#((teaserBreak))
+{{teaserbreak}}
 
 ## State
 State is a plain javascript object that is used to _record_ and _react_ to javascript events.

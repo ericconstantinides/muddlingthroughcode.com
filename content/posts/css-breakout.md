@@ -35,8 +35,7 @@ CSS Breakout works because we have a few (newer) things at our disposal: `SASS`,
       </div>
     </div>
 
-
-[//]:#((teaserBreak))
+{{teaserbreak}}
 
 ## Live Demo
 

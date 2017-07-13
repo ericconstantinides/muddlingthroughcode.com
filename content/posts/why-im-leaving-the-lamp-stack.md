@@ -12,7 +12,7 @@ Today I'm officially ditching the LAMP stack and finding something new. This is 
 
 My journey began 6 months ago when literally all I knew was that I needed to learn a front-end framework in order to update content on a Drupal site better. That led me to a standoff between either [React](https://facebook.github.io/react/) or [Angular](https://angularjs.org/) ([Vue](https://vuejs.org/) wasn't much of a thing yet). After [crunching some numbers](https://www.youtube.com/watch?v=KMX1mFEmM3E), I found the general consensus was that React has more [top-level tech companies using it](https://github.com/facebook/react/wiki/sites-using-react). It was settled, I was [learning React](https://www.youtube.com/watch?v=MhkGQAoc7bc&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b).
 
-[//]:#((teaserBreak))
+{{teaserbreak}}
 
 In order to learn React you need to know [ES6/ES2015](https://css-tricks.com/lets-learn-es2015/) and [JSX](https://www.youtube.com/watch?v=m_d7xofR1RQ). Uh oh. So the new first thing I had to do was to [learn ES2015](https://www.youtube.com/watch?v=HIS8juawTmM&list=PLVHlCYNvnqYouIVj3IgK3RmzpnWMaoqkw). Then I quickly moved on to learning [React along with Webpack and Babel](https://www.youtube.com/watch?v=uextYhQGP6k). I was quickly overwhelmed. I didn't even know what a [router](https://medium.com/@dabit3/beginner-s-guide-to-react-router-53094349669) was. I didn't understand what an [MVC](https://www.youtube.com/watch?v=1IsL6g2ixak) was. I was trying to grock React before really grocking the stack. So I backed up. Way back. I had to understand the stack.
 

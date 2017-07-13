@@ -14,6 +14,9 @@ This is a cheatsheet I created for myself when learning Node / Express. Relative
 * in template:
 	* `<%= myVariable %>`
 	* `<%- myHtmlVariable %>`  this way doesn't escape HTML characters
+
+{{teaserbreak}}
+
 * **Router**
 	* in app:
 ```

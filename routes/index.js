@@ -14,11 +14,19 @@ const router = express.Router()
 
 const siteMeta = require('../content/site-meta.config.js')
 const dateUtils = require('../utilities/dateUtils')
+const TEASERBREAK = '{{teaserbreak}}'
 
-function teaserBreak (string, addOn) {
-  let teaser = string.substr(0, string.indexOf('[//]:#((teaserBreak))'))
-  if (teaser === '') return string
-  return (teaser + addOn)
+function teaserBreak (postText) {
+  // make sure it's lowercase
+  postText = postText.replace(TEASERBREAK.toUpperCase(), TEASERBREAK)
+  const postArray = postText.split(TEASERBREAK)
+  strippedPost = typeof postArray[1] !== 'undefined' ?
+    postArray[0] + postArray[1] :
+    postArray[0]
+  return {
+    teaserMd: postArray[0],
+    postMd: strippedPost
+  }
 }
 
 function postGettingPosts (posts) {
@@ -105,7 +113,8 @@ let postMetaJson = require('../content/posts.json')
 getAllPosts(postMetaJson)
   .then((postsMarkdown) => {
     postMetaJson.forEach((postObj, index, posts) => {
-      postObj.content = marked(postsMarkdown[index])
+      const { teaserMd, postMd } = teaserBreak(postsMarkdown[index])
+      postObj.content = marked(postMd)
 
       postObj.title = ''
       const $post = cheerio.load(postObj.content)
@@ -116,8 +125,12 @@ getAllPosts(postMetaJson)
       }
       postObj.slug = slug(postObj.title).toLowerCase()
 
-      postObj.teaser = marked(teaserBreak(postsMarkdown[index],
-        `<p class="more-link__p"><span class="more-link__outer"><a class="more-link" href="/posts/${postObj.slug}">Read On</a></span></p>`))
+      postObj.teaser = marked(teaserMd) +
+        `<p class="more-link__p">
+          <span class="more-link__outer">
+          <a class="more-link" href="/posts/${postObj.slug}">Read On</a>
+          </span>
+        </p>`
 
       const $postTeaser = cheerio.load(postObj.teaser)
       if (typeof $postTeaser('h1') !== 'undefined') {
