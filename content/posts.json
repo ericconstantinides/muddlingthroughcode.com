@@ -50,6 +50,16 @@
     },
     "date": "2017-07-10",
     "file": "how-i-got-my-node-stack-running-on-aws.md",
+    "active": false
+  },
+  {
+    "primaryImage": {
+      "image": "/images/the-simpsons-school-notes.gif",
+      "title": "I don't get school these days. The fact that you can't pause a teacher seems like an antiquated model to me."
+    },
+    "description": "My notes on React",
+    "date": "2017-07-10",
+    "file": "react-notes.md",
     "active": true
   }
 ]
