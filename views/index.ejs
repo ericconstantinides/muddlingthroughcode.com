@@ -1,6 +1,7 @@
 <% include partials/head %>
 <% include partials/site-header %>
 <main class="main skinny-container">
+  <div id="reactApp"></div>
   <% posts.forEach(post => { %>
     <article class="post">
       <% if (typeof post.css !== 'undefined') { %>
