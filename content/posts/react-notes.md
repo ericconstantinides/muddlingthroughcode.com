@@ -36,7 +36,7 @@ class MyComponent extends Component {
 ```
 * `{ Component }` is a fancy ES6 way to pull out React.Component
 * if using `state`, it must be initialized in `constructor()`
-* JSX must be wrapped in an element (in this case, `<div>`)
+* JSX must be wrapped in an element (in this case, `<div>`) or a self closing element (like an `<input />`)
 
 ### Component w/ Event Handler
 ```
@@ -52,7 +52,7 @@ class SearchBar extends Component {
 }
 ```
 * _curly braces_ `{}` are used to compile the `JSX` as `JS`
-* Don't use quotes around curly braces 
+* Don't use quotes around curly braces
 * the `onChange` event handler is also a `prop`
 * we use `this.onInputChange`  so it knows that its a function inside our class
 
