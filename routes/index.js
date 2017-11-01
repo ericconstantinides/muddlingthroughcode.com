@@ -20,9 +20,9 @@ function teaserBreak (postText) {
   // make sure it's lowercase
   postText = postText.replace(TEASERBREAK.toUpperCase(), TEASERBREAK)
   const postArray = postText.split(TEASERBREAK)
-  strippedPost = typeof postArray[1] !== 'undefined' ?
-    postArray[0] + postArray[1] :
-    postArray[0]
+  const strippedPost = typeof postArray[1] !== 'undefined'
+    ? postArray[0] + postArray[1]
+    : postArray[0]
   return {
     teaserMd: postArray[0],
     postMd: strippedPost
@@ -68,7 +68,7 @@ let feed = new Feed({
   link: siteMeta.website.url,
   image: siteMeta.website.url + siteMeta.website.primaryImage.path,
   favicon: siteMeta.website.url + '/favicon.ico',
-  copyright: '© ' + new Date().getFullYear() + ' ' + siteMeta.owner.name,
+  copyright: '&copy; ' + new Date().getFullYear() + ' ' + siteMeta.owner.name,
   // updated: new Date(2013,06,14), // optional, default = today
   // generator: '', // optional, default = 'Feed for Node.js'
   feedLinks: {
@@ -108,10 +108,14 @@ function getAllPosts (postMetaJson) {
 let postMetaJson = require('../content/posts.json')
   .filter(postObj => postObj.active)
   .filter(postObj => new Date(dateUtils.cleanDate(postObj.date)) <= new Date())
-  .sort((a, b) => new Date(dateUtils.cleanDate(b.date)) - new Date(dateUtils.cleanDate(a.date)))
+  .sort(
+    (a, b) =>
+      new Date(dateUtils.cleanDate(b.date)) -
+      new Date(dateUtils.cleanDate(a.date))
+  )
 
 getAllPosts(postMetaJson)
-  .then((postsMarkdown) => {
+  .then(postsMarkdown => {
     postMetaJson.forEach((postObj, index, posts) => {
       const { teaserMd, postMd } = teaserBreak(postsMarkdown[index])
       postObj.content = marked(postMd)
@@ -125,7 +129,8 @@ getAllPosts(postMetaJson)
       }
       postObj.slug = slug(postObj.title).toLowerCase()
 
-      postObj.teaser = marked(teaserMd) +
+      postObj.teaser =
+        marked(teaserMd) +
         `<p class="more-link__p">
           <span class="more-link__outer">
           <a class="more-link" href="/posts/${postObj.slug}">Read On</a>
@@ -142,8 +147,11 @@ getAllPosts(postMetaJson)
       postObj.dateDisplay = dateUtils.prettyDate(postObj.date)
 
       // set up the primary image
-      if (typeof postObj.primaryImage !== 'undefined' && typeof postObj.primaryImage.image !== 'undefined') {
-        if (typeof postObj.primaryImage.containerClass === 'undefined') postObj.primaryImage.containerClass = ''
+      if (
+        typeof postObj.primaryImage !== 'undefined' &&
+        typeof postObj.primaryImage.image !== 'undefined'
+      ) {
+        if (typeof postObj.primaryImage.containerClass === 'undefined') { postObj.primaryImage.containerClass = '' }
       } else {
         postObj.primaryImage = false
       }
@@ -154,21 +162,29 @@ getAllPosts(postMetaJson)
         link: siteMeta.website.url + '/' + postObj.slug,
         description: postObj.description,
         content: postObj.content,
-        author: [{
-          name: siteMeta.owner.name,
-          email: siteMeta.owner.email,
-          link: siteMeta.owner.url
-        }],
+        author: [
+          {
+            name: siteMeta.owner.name,
+            email: siteMeta.owner.email,
+            link: siteMeta.owner.url
+          }
+        ],
         date: new Date(dateUtils.cleanDate(postObj.date)),
-        image: (postObj.primaryImage ? siteMeta.website.url + postObj.primaryImage.image : '')
+        image: postObj.primaryImage
+          ? siteMeta.website.url + postObj.primaryImage.image
+          : ''
       })
       // Assign the first date to the last modified
       if (typeof siteMap[0].lastmod === 'undefined') {
-        siteMap[0].lastmod = new Date(dateUtils.cleanDate(postObj.date)).toISOString().substr(0, 10)
+        siteMap[0].lastmod = new Date(dateUtils.cleanDate(postObj.date))
+          .toISOString()
+          .substr(0, 10)
       }
       siteMap.push({
         loc: siteMeta.website.url + '/posts/' + postObj.slug,
-        lastmod: new Date(dateUtils.cleanDate(postObj.date)).toISOString().substr(0, 10),
+        lastmod: new Date(dateUtils.cleanDate(postObj.date))
+          .toISOString()
+          .substr(0, 10),
         changefreq: 'weekly',
         priority: 0.5
       })
