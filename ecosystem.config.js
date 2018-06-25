@@ -7,7 +7,7 @@ module.exports = {
     production: {
       user: 'eric',
       host: 'eric2',
-      // key: '~/.ssh/TheKeyPairofEric.pem',
+      key: '~/.ssh/id_rsa.pub',
       ref: 'origin/master',
       repo: 'git@github.com:ericconstantinides/muddlingthroughcode.com.git',
       path: '/var/www/node/muddlingthroughcode.com',
